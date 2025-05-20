@@ -35,7 +35,7 @@ const page = () => {
         {/* <ModelofCare/> */}
         <Box display="flex" sx={{ position: "relative", overflow: "hidden" }} width="100%" height="350px">
             <ExportedImage
-                src={`${HName}/about/try_about.jpg`}
+                src={`${HName}/about/about_us.jpg`}
                 alt="background"
                 fill
                 style={{ objectFit: "cover" }}
