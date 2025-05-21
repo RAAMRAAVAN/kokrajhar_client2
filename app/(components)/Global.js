@@ -22,4 +22,3 @@ export const HomeDoctorList = color1;
 export const DoctorDetails = color1;
 export const ContactColor = MedantaOrange;
 export const Font = 'montserrat';
-export const HName = 'SCI/';

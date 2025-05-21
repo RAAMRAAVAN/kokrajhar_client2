@@ -1,12 +1,12 @@
 'use client'
 import { Box, Typography } from "@mui/material";
-import { Suspense, lazy } from "react";
-// import { fetchHomeContent} from "../../lib/fetchData";
+import { Suspense, lazy, useEffect, useState } from "react";
 import Loader from "../(components)/Loader";
-import { HomeContent, UpdatesAccess, VideosAccess } from "@/lib/fetchData";
+import { FetchUpdates, UpdatesAccess, VideosAccess } from "@/lib/fetchData";
 import DoctorSlider from '../(components)/DoctorCard/DoctorSlider';
 import ScrollReveal from "../(components)/Animation/ScrollReveal";
 import { Element } from 'react-scroll';
+import { selectHospitalDetails } from "@/redux/features/hospitalDetailSlice";
 
 const ImageSliderMain = lazy(() => import("../(components)/HomeImageSlider/ImageSliderMain"));
 // const DoctorSlider = lazy(() => import("../(components)/DoctorCard/DoctorSlider"));
@@ -18,14 +18,35 @@ const VideoGrid = lazy(() => import("../(components)/Videos/VideoGrid"));
 const Partners = lazy(() => import("../(components)/Partners/Partners"));
 import TextCarousel from "../(components)/TextCarousel";
 import ScrollNav from "../(components)/ScrollNav";
+import { useSelector } from "react-redux";
+import { LatestVideos2 } from "../../lib/fetchData";
 
 // ✅ Server Component
 const Home = () => {
-  const homeContent = HomeContent;
+  // const homeContent = HomeContent;
+  const HospitalDetails = useSelector(selectHospitalDetails);
+
+  const [LatestVideosData, setVideos] = useState([]);
+  const [updates, setUpdates] = useState([]);
+  
+    const fetchVideos = async () => {
+      // console.log("fetch videos")
+      setVideos(await LatestVideos2())
+    }
+
+    const fetchUpdates = async () => {
+      // console.log("fetch videos")
+      setUpdates(await FetchUpdates())
+    }
+    useEffect(() => {
+      fetchVideos();
+      fetchUpdates();
+    }, [])
+
   return (
     <>
     {/* <ScrollNav/> */}
-      {UpdatesAccess ? <TextCarousel /> : <></>}
+      {updates.length >0 ? <TextCarousel updates={updates}/> : <></>}
 
       <Box
         display="flex"
@@ -37,23 +58,21 @@ const Home = () => {
         fontFamily='fantasy'
       >
         {/* Intro */}
-        {/* <Element name="Intro"> */}
           <Box display="flex" width="100%" sx={{ flexDirection: { xs: "column", md: "row" } }}>
             <Suspense fallback={<Loader />}>
               <ImageSliderMain />
             </Suspense>
             <Box paddingX={2} sx={{ width: { xs: "100%", md: "40%" } }}>
-              {homeContent ? (
+              {HospitalDetails ? (
                 <>
-                  <Typography variant="h6">{homeContent.heading}</Typography>
-                  <Typography textAlign="justify" fontSize={14}>{homeContent.description}</Typography>
+                  <Typography variant="h6">{HospitalDetails.intro_heading}</Typography>
+                  <Typography textAlign="justify" fontSize={14}>{HospitalDetails.intro}</Typography>
                 </>
               ) : (
                 <Loader />
               )}
             </Box>
           </Box>
-        {/* </Element> */}
 
         {/* Consultants Section */}
         <Element name="Doctors">
@@ -113,13 +132,13 @@ const Home = () => {
         </Element>
 
         <Element name="Stories">
-          {VideosAccess ? <Box display='flex' width='100%' justifyContent='center'  marginTop={5}>
+          {LatestVideosData.length > 0 ? <Box display='flex' width='100%' justifyContent='center'  marginTop={5}>
             <Box display='flex' width='90%' flexDirection='column' marginTop={2}>
               <Typography variant="h5" fontWeight="bold" marginBottom={3}>
                 Our Stories
               </Typography>
               <Suspense>
-                <VideoGrid />
+                <VideoGrid  LatestVideosData={LatestVideosData}/>
               </Suspense>
             </Box>
           </Box> : <></>}

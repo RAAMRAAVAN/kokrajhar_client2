@@ -1,11 +1,11 @@
 'use client'
 import { FetchPartners2 } from "@/lib/fetchData";
 import { Box, Grid } from "@mui/material";
-import ExportedImage from "next-image-export-optimizer";
 import { color1, color4 } from "../Global";
 import ScrollReveal from "../Animation/ScrollReveal";
 import { useEffect, useState } from "react";
 import Loader from "../Loader";
+import Image from "next/image";
 
 const Partners = () => {
     // const partners = FetchPartners;
@@ -26,8 +26,6 @@ const Partners = () => {
     useEffect(()=>{
         fetchPartners();
     }, [])
-
-    console.log("Partners=",Partners)
     if(Partners.length > 0)
     return (
         <Grid container alignItems="center" spacing={1}>
@@ -57,7 +55,7 @@ const Partners = () => {
                             height="100px"
                             // border={`1px solid ${color1}`}
                         >
-                            <ExportedImage
+                            <Image
                                 src={`https://accf-api.cancercareinstituteguwahati.org/storage/${partner.photo}`}
                                 alt="partner logo"
                                 fill

@@ -1,10 +1,8 @@
 'use client';
-import { ExpandCircleDownRounded, LocationCity, Share } from "@mui/icons-material";
 import { Box, Button, createTheme, Grid, Typography } from "@mui/material";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-import ExportedImage from "next-image-export-optimizer";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { PickersDay } from "@mui/x-date-pickers/PickersDay";
@@ -14,6 +12,7 @@ import '@/lib/custom-dayjs-locale';
 import DINCModal from "@/app/(components)/DoctorCard/DINCModal";
 import { useSelector } from "react-redux";
 import { selectDoctorById, selectDoctorsAvailability } from "@/redux/features/doctorSlice";
+import Image from "next/image";
 
 const today = dayjs();
 
@@ -91,7 +90,7 @@ const Overview = () => {
             justifyContent="center"
             alignItems="center"
           >
-            <ExportedImage
+            <Image
               src={
                 doctorDetails?.photo
                   ? `https://accf-api.cancercareinstituteguwahati.org/storage/${doctorDetails.photo}`

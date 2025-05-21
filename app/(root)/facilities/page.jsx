@@ -1,10 +1,10 @@
-// app/(root)/facilities/page.js
 import { Suspense } from "react";
 import FacilitiesClient from "./FacilitiesClient";
+import Loader from "../../(components)/Loader";
 
 const Page = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loader/>}>
       <FacilitiesClient />
     </Suspense>
   );

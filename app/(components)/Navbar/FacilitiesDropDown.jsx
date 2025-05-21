@@ -2,66 +2,37 @@ import { useState } from "react";
 import { Box, Button, Menu, MenuItem, Typography } from "@mui/material";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Link from "next/link";
+import { NavElements } from "../Global";
 
 const FacilitiesDropdown = ({ item, Facilities }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const handleMouseEnter = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMouseLeave = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
+  const [open, setOpen] = useState(false)
 
   return (
     <Box
       key={item.name}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
     >
       <Button
-        sx={{ color: "gray", fontWeight: "bold" }}
-        aria-controls={open ? "facilities-menu" : undefined}
-        aria-haspopup="true"
+        sx={{ color: NavElements }}
+        onMouseEnter={() => setOpen(true)} // Change onHover to onMouseEnter
+        onMouseLeave={() => setOpen(false)} // Optionally, close on mouse leave
       >
         {item.name} <ExpandMore />
       </Button>
 
-      <Menu
-        id="facilities-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={() => setAnchorEl(null)}
-        MenuListProps={{
-          onMouseEnter: handleMouseEnter,
-          onMouseLeave: handleMouseLeave,
-        }}
-      >
-        {Facilities?.length > 0 ? (
-          Facilities.map((facility) => (
-            <Link
-              key={facility.id}
-              href={`/facilities#${facility._id}`}
-              passHref
-              legacyBehavior
-            >
-              <MenuItem
-                key={facility.name || facility.title}
-                onClick={() => setAnchorEl(null)}
-              >
-                <Typography>{facility.title}</Typography>
-              </MenuItem>
-            </Link>
-          ))
-        ) : (
-          <MenuItem disabled>
-            <Typography>No facilities available</Typography>
-          </MenuItem>
-        )}
-      </Menu>
+      {open ?
+        <Box boxShadow={3} sx={{ zIndex: 10001 }} borderRadius={1} display='flex' width='200px' backgroundColor='white' position='absolute' flexDirection='column' onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} paddingY={1}>
+          {Facilities?.length > 0 ? (
+            Facilities.map((facility) => (<Box key={facility.id} padding={1} onClick={() => setOpen(false)} sx={{ cursor: 'pointer', '&:hover': { backgroundColor: 'lightgray', display: 'flex', width: '100%' } }}>
+              <Link href={`/facilities#${facility.id}`} passHref legacyBehavior>
+                <Box display='flex'><Typography color="#454545" marginLeft={1}>{facility.name}</Typography></Box>
+              </Link>
+            </Box>)))
+            : (
+              <Box padding={1} onClick={() => setOpen(false)} sx={{ cursor: 'pointer', '&:hover': { backgroundColor: 'lightgray', display: 'flex', width: '100%' } }}>
+                <Typography >No facilities available</Typography>
+              </Box>
+            )}
+        </Box> : <></>}
     </Box>
   );
 };

@@ -1,9 +1,9 @@
-import { ArrowDropDownCircle, ExpandCircleDownRounded } from "@mui/icons-material";
+import { ExpandCircleDownRounded } from "@mui/icons-material";
 import { Box, Typography } from "@mui/material";
 import { color3, MedantaOrange } from "../Global";
 import './ModelofCare.css';
-import ExportedImage from "next-image-export-optimizer";
 import CircleWithMarker from './CircleWithMarker';
+import Image from "next/image";
 const ModelofCare = () => {
     return (<>
         <Box display='flex' width='100%' flexDirection='column' alignItems='center'>
@@ -17,7 +17,7 @@ const ModelofCare = () => {
                 <ExpandCircleDownRounded sx={{ color: MedantaOrange, fontSize: 30, transform: 'rotate(270deg)' }} className="ExpandButton" />
             </Box>
             <Box display='flex' justifyContent='center' alignItems='center' width='500px' height='500px'>
-                <ExportedImage
+                <Image
                     src="/SCI/CareModel/Care.webp"
                     alt="background"
                     width={400}

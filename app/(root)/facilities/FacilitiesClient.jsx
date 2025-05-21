@@ -1,18 +1,14 @@
 "use client";
 import { Box, Typography } from "@mui/material";
-import ExportedImage from "next-image-export-optimizer";
 import Facilities from "../../(components)/FacilitiesNew2/FacilityData";
-// import { API, HName } from "@/app/(components)/Global";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { HName } from '@/lib/fetchData';
 // import ParallelogramGrid from "./ParallelogramGrid";
 import { color6, color7 } from "@/app/(components)/Global";
 
 const FacilitiesClient = () => {
     const searchParams = useSearchParams();
     const expand = searchParams.get("expand");
-    const HoName = HName;
     const [FID, setFID] = useState("");
 
     useEffect(() => {
@@ -24,13 +20,13 @@ const FacilitiesClient = () => {
     return (
         <>
             <Box display="none" sx={{ position: "relative", overflow: "hidden" }} width="100%" height="350px">
-                <ExportedImage
-                    src={`${HName}/Facilities/facilities_bg.jpg`}
+                {/* <Image
+                    src={`/Facilities/facilities_bg.jpg`}
                     alt="background"
                     fill
                     style={{ objectFit: "cover" }}
                     quality={100}
-                />
+                /> */}
                 <Box
                     sx={{
                         position: "absolute",

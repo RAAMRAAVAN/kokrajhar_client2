@@ -1,14 +1,13 @@
 "use client";
 import { Box, Button, Grid, Typography } from "@mui/material";
-import ExportedImage from "next-image-export-optimizer";
-import { color } from "../Global";
 import { useSelector } from "react-redux";
 import { selectFacilities } from "@/redux/features/facilitiesSlice";
 import Loader from "../Loader";
-import { useEffect, useState, useRef } from "react";
+import { useEffect} from "react";
 import { useMediaQuery } from '@mui/material';
 import ReadMoreText from "./ReadMoreText";
 import { selectNewses } from "@/redux/features/newsSlice";
+import Image from "next/image";
 
 const Facilities = ({ expand, FID }) => {
   const facilities = useSelector(selectFacilities);
@@ -83,7 +82,7 @@ const Facilities = ({ expand, FID }) => {
                 display='flex'
               >
                 <Grid item xs={4} position="relative" width="1000px" height="300px">
-                  <ExportedImage
+                  <Image
                     src={`/News/${news.id}/1.jpg`}
                     alt="img"
                     priority

@@ -1,6 +1,5 @@
 "use client";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
-import ExportedImage from "next-image-export-optimizer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
@@ -8,17 +7,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import { memo } from "react";
-// import { useSelector } from "react-redux";
-// import { selectHospitalDetails } from "@/redux/features/hospitalDetailSlice";
-
-function convertToArray(str) {
-  return str.split(',').map(item => item.trim());
-}
+import Image from "next/image";
 
 const ImageSlider = ({ id, Images = [] }) => {
-  // const hospitalData = useSelector(selectHospitalDetails)
-  // const imageArray = convertToArray(Images);
-  // console.log("Images=",imageArray);
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
 
@@ -75,7 +66,7 @@ const ImageSlider = ({ id, Images = [] }) => {
         {Images.length > 0 ? (
           Images.map((image, index) => (
             <SwiperSlide key={index} style={{ width: "100%" }}>
-              <ExportedImage
+              <Image
                 src={`https://accf-api.cancercareinstituteguwahati.org/storage/${image.photo_path}`}
                 alt="Image Slide"
                 width={530}
@@ -92,7 +83,7 @@ const ImageSlider = ({ id, Images = [] }) => {
           ))
         ) : (
           // <SwiperSlide style={{ width: "fit-content" }}>
-            <ExportedImage
+            <Image
               src="/placeholder.jpg"
               alt="No Image Available"
               width={530}

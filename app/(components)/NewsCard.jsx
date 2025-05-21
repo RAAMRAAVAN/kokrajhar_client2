@@ -1,11 +1,9 @@
 'use client'
-import React from "react";
 import { Card, CardContent, Typography, Box, Button } from "@mui/material";
-import ExportedImage from "next-image-export-optimizer";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { setID } from "@/redux/features/newsSlice";
-import { Font } from "./Global";
+import Image from "next/image";
 
 const NewsCard = ({ id, image, title = "No Title", text = "No Description", date = "No Date" }) => {
   const dispatch = useDispatch();
@@ -34,7 +32,7 @@ const NewsCard = ({ id, image, title = "No Title", text = "No Description", date
         <Box component="a" sx={{ height: "100%", textDecoration: "none", color: "inherit", position: "relative" }}>
           {/* Image Section */}
           <Box sx={{ position: "relative", height: 200 }}>
-            <ExportedImage
+            <Image
               src={image}
               alt="img"
               fill

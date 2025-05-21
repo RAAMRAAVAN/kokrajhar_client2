@@ -10,7 +10,6 @@ import { selectHospitals } from "@/redux/features/hospitalSlice";
 import { selectFacilities } from "@/redux/features/facilitiesSlice";
 import { selectHospitalDetails } from "@/redux/features/hospitalDetailSlice";
 import { useRouter } from "next/navigation";
-import { Font } from "../Global";
 import Loader from "../Loader";
 
 const Footer = () => {
@@ -69,7 +68,7 @@ const Footer = () => {
                                 cursor: 'pointer', '&:hover': {
                                     // transform: 'scale(1.05)'
                                 }
-                            }} onClick={() => router.push(`/facilities#${facility._id}`)}>
+                            }} onClick={() => router.push(`/facilities#${facility.id}`)}>
                                 <RenderListItem text={facility.name} />
                             </Grid>
                         ))}

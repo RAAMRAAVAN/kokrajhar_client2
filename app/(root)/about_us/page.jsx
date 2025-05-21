@@ -1,19 +1,18 @@
 'use client'
 import { Box, Typography } from "@mui/material";
-import ExportedImage from "next-image-export-optimizer";
 import Entries from "./entries";
-// import { API, Font, HName } from "@/app/(components)/Global";
-import { FetchAboutUs, FetchAboutUs2, HName } from "@/lib/fetchData";
+import { FetchAboutUs2} from "@/lib/fetchData";
 import OurHospitalsPage from "@/app/(components)/Hospitals/OurHospitalsPage";
-import ModelofCare from "@/app/(components)/ModelofCare/ModelofCare";
 import Loader from "@/app/(components)/Loader";
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import { useSelector } from "react-redux";
+import { removeBackslashes} from "@/lib/fetchData";
+import { selectHospitalDetails } from "@/redux/features/hospitalDetailSlice";
 
 const page = () => {
-    const HoName = HName;
-
     const [about, setAbout] = useState([]);
-
+    const HospitalDetails = useSelector(selectHospitalDetails);
     const fetchAboutUs = async () => {
         // setLoading2(true);
         try {
@@ -30,12 +29,12 @@ const page = () => {
         fetchAboutUs();
     }, [])
 
-    if(about.length > 0)
+    // if(about.length > 0)
     return (<>
         {/* <ModelofCare/> */}
         <Box display="flex" sx={{ position: "relative", overflow: "hidden" }} width="100%" height="350px">
-            <ExportedImage
-                src={`${HName}/about/about_us.jpg`}
+            <Image
+                src={`https://accf-api.cancercareinstituteguwahati.org/storage/${removeBackslashes(HospitalDetails.about_bg)}`}
                 alt="background"
                 fill
                 style={{ objectFit: "cover" }}
@@ -72,7 +71,7 @@ const page = () => {
             <Entries entries={about} />
         </Box>
     </>)
-    else
-    return(<Loader/>)
+    // else
+    // return(<Loader/>)
 }
 export default page;

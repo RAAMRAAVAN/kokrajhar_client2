@@ -1,7 +1,5 @@
 'use client'
 import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
-import ExportedImage from "next-image-export-optimizer";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { color4, Font } from "../Global";
@@ -38,13 +36,13 @@ const Accomplishments = ({ accomplishments }) => {
         </Box>
         <Box display="flex" width="100%" justifyContent="center">
             <Grid container spacing={2} marginX={5} marginY={3} gap={2} justifyContent='center'>
-                <Grid item lg={2.1} sx={{cursor:'pointer'}} md={3} sm={4} xs={12} border='1px black sold' backgroundColor='white' borderRadius={2} paddingY={2} boxShadow={5} display='flex' flexDirection='column' alignItems='center'>
+                <Grid item lg={2.1} sx={{ cursor: 'pointer' }} md={3} sm={4} xs={12} border='1px black sold' backgroundColor='white' borderRadius={2} paddingY={2} boxShadow={5} display='flex' flexDirection='column' alignItems='center'>
                     <Box display='flex'><AnimatedCounter
                         end={accomplishments.patient}
                         duration={AnimationDuration}
                         fontWeight="bold"
                         color={color4}
-                        // sx={{ textShadow: "3px 3px 5px rgba(0, 0, 0, 0.8)" }}
+                    // sx={{ textShadow: "3px 3px 5px rgba(0, 0, 0, 0.8)" }}
                     />
                         <Typography variant="h4" fontWeight="bold" color={color4}
                         // sx={{ textShadow: "3px 3px 5px rgba(0, 0, 0, 0.8)" }}
@@ -56,13 +54,13 @@ const Accomplishments = ({ accomplishments }) => {
                     </Typography>
                 </Grid>
 
-                <Grid item lg={2.1} sx={{cursor:'pointer'}} md={3} sm={4} xs={12} border='1px black sold' backgroundColor='white' borderRadius={2} paddingY={2} boxShadow={5} display='flex' flexDirection='column' alignItems='center'>
+                <Grid item lg={2.1} sx={{ cursor: 'pointer' }} md={3} sm={4} xs={12} border='1px black sold' backgroundColor='white' borderRadius={2} paddingY={2} boxShadow={5} display='flex' flexDirection='column' alignItems='center'>
                     <Box display='flex'><AnimatedCounter
                         end={accomplishments.chemo}
                         duration={AnimationDuration}
                         fontWeight="bold"
                         color={color4}
-                        // sx={{ textShadow: "3px 3px 5px rgba(0, 0, 0, 0.8)" }}
+                    // sx={{ textShadow: "3px 3px 5px rgba(0, 0, 0, 0.8)" }}
                     />
                         <Typography variant="h4" fontWeight="bold" color={color4}
                         // sx={{ textShadow: "3px 3px 5px rgba(0, 0, 0, 0.8)" }}
@@ -74,13 +72,13 @@ const Accomplishments = ({ accomplishments }) => {
                     </Typography>
                 </Grid>
 
-                <Grid item lg={2.1} sx={{cursor:'pointer'}} md={3} sm={4} xs={12} border='1px black sold' backgroundColor='white' borderRadius={2} paddingY={2} boxShadow={5} display='flex' flexDirection='column' alignItems='center'>
+                <Grid item lg={2.1} sx={{ cursor: 'pointer' }} md={3} sm={4} xs={12} border='1px black sold' backgroundColor='white' borderRadius={2} paddingY={2} boxShadow={5} display='flex' flexDirection='column' alignItems='center'>
                     <Box display='flex'><AnimatedCounter
                         end={accomplishments.radiation}
                         duration={AnimationDuration}
                         fontWeight="bold"
                         color={color4}
-                        // sx={{ textShadow: "3px 3px 5px rgba(0, 0, 0, 0.8)" }}
+                    // sx={{ textShadow: "3px 3px 5px rgba(0, 0, 0, 0.8)" }}
                     />
                         <Typography variant="h4" fontWeight="bold" color={color4}
                         // sx={{ textShadow: "3px 3px 5px rgba(0, 0, 0, 0.8)" }}
@@ -93,15 +91,15 @@ const Accomplishments = ({ accomplishments }) => {
                 </Grid>
 
 
-                <Grid item lg={2.1} sx={{cursor:'pointer'}} md={3} sm={4} xs={12} border='1px black sold' backgroundColor='white' borderRadius={2} paddingY={2} boxShadow={5} display='flex' flexDirection='column' alignItems='center'>
+                <Grid item lg={2.1} sx={{ cursor: 'pointer' }} md={3} sm={4} xs={12} border='1px black sold' backgroundColor='white' borderRadius={2} paddingY={2} boxShadow={5} display='flex' flexDirection='column' alignItems='center'>
                     <Box display='flex'><AnimatedCounter
                         end={accomplishments.doctors}
                         duration={AnimationDuration}
                         fontWeight="bold"
                         color={color4}
-                        // sx={{ textShadow: "3px 3px 5px rgba(0, 0, 0, 0.8)" }}
+                    // sx={{ textShadow: "3px 3px 5px rgba(0, 0, 0, 0.8)" }}
                     />
-                        <Typography variant="h4" fontWeight="bold" color={color4} 
+                        <Typography variant="h4" fontWeight="bold" color={color4}
                         // sx={{ textShadow: "3px 3px 5px rgba(0, 0, 0, 0.8)" }}
                         >
                             +
@@ -111,15 +109,15 @@ const Accomplishments = ({ accomplishments }) => {
                     </Typography>
                 </Grid>
 
-                
 
-                <Grid item lg={2.1} sx={{cursor:'pointer'}} md={3} sm={4} xs={12} border='1px black sold' backgroundColor='white' borderRadius={2} paddingY={2} boxShadow={5} display='flex' flexDirection='column' alignItems='center'>
+
+                <Grid item lg={2.1} sx={{ cursor: 'pointer' }} md={3} sm={4} xs={12} border='1px black sold' backgroundColor='white' borderRadius={2} paddingY={2} boxShadow={5} display='flex' flexDirection='column' alignItems='center'>
                     <Box display='flex'><AnimatedCounter
                         end={accomplishments.total_beds || 44}
                         duration={AnimationDuration}
                         fontWeight="bold"
                         color={color4}
-                        // sx={{ textShadow: "3px 3px 5px rgba(0, 0, 0, 0.8)" }}
+                    // sx={{ textShadow: "3px 3px 5px rgba(0, 0, 0, 0.8)" }}
                     />
                         <Typography variant="h4" fontWeight="bold" color={color4}
                         // sx={{ textShadow: "3px 3px 5px rgba(0, 0, 0, 0.8)" }}

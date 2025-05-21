@@ -1,6 +1,5 @@
 "use client";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
-import ExportedImage from "next-image-export-optimizer";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
@@ -9,6 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import { memo } from "react";
 import Loader from "../Loader";
+import Image from "next/image";
 
 const ImageSlider = ({ Images = [] }) => {
   const theme = useTheme();
@@ -60,7 +60,7 @@ const ImageSlider = ({ Images = [] }) => {
 
           {Images.map((image, index) => (
             <SwiperSlide key={index}>
-              <ExportedImage
+              <Image
                 src={`https://accf-api.cancercareinstituteguwahati.org/storage/${image.photo}`}
                 alt="img"
                 width={600}

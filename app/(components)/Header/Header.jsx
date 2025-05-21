@@ -1,27 +1,18 @@
 "use client";
 import { useEffect, useState } from "react";
-import ExportedImage from "next-image-export-optimizer";
 import { Box, Fab, Grid, Typography } from "@mui/material";
 import { KeyboardArrowUp } from "@mui/icons-material";
 import Navbar from "../Navbar/Navbar";
 import SocialIcons from "../SocialIcons";
-import ContactUs from "../ContactUs/ContactUs";
-import { color1, color2, color3, Font, HName } from "../Global";
+import { color1} from "../Global";
 import Loader from "../Loader";
-import LatestEvent from "../LatestEvent/LatestEvent";
 import { color } from "../Global";
-// import Router from "next/router";
-import { useRouter } from "next/navigation";
 import { removeBackslashes, VideosAccess } from "@/lib/fetchData";
-import ScrollNav from '../ScrollNav';
 import { useSelector } from "react-redux";
 import { selectHospitalDetails } from "@/redux/features/hospitalDetailSlice";
-import { selectHospitals } from "@/redux/features/hospitalSlice";
-import { selectFacilities } from "@/redux/features/facilitiesSlice";
+import Image from "next/image";
 
 const Header = () => {
-    const OurHospitals = useSelector(selectHospitals)
-    const Facilities = useSelector(selectFacilities);
     const HospitalDetails = useSelector(selectHospitalDetails);
     const [open, setOpen] = useState(false);
     const [hydrated, setHydrated] = useState(false);
@@ -44,7 +35,7 @@ const Header = () => {
     }, []);
 
     if (!hydrated) return null;
-    if (!HospitalDetails || !OurHospitals) return <Loader />;
+    if (!HospitalDetails) return <Loader />;
 
     return (
         <>
@@ -88,34 +79,37 @@ const Header = () => {
                             flexDirection: 'column',
                             position: 'relative'
                         }}>
+                            {HospitalDetails.logo_primary == null?<></>:
                             <Grid item xs={5}>
-                                <ExportedImage
-                                    src="/accf_logo.png"
+                                <Image
+                                    src={`https://accf-api.cancercareinstituteguwahati.org/storage/${removeBackslashes(HospitalDetails.logo_primary)}`}
                                     alt="SCI Logo"
-                                    width={80}
+                                    width={100}
+                                    height={100}
+                                    priority
+                                    style={{ objectFit: "contain", width: '100', height: '100', cursor: 'pointer' }}
+                                    onClick={() => window.location.href = '/'}
+                                />
+                            </Grid>}
+                            {HospitalDetails.logo_secondary == null?<></>:
+                            <Grid item xs={5} position='absolute' top={10} right={0}>
+                                <Image
+                                    src={`https://accf-api.cancercareinstituteguwahati.org/storage/${removeBackslashes(HospitalDetails.logo_secondary)}`}
+                                    alt="ACCF Logo"
+                                    width={90}
                                     height={90}
                                     priority
                                     style={{ objectFit: "contain", width: 'auto', height: 'auto', cursor: 'pointer' }}
                                     onClick={() => window.location.href = '/'}
                                 />
-                            </Grid>
-                            {/* <Grid item xs={5} position='absolute' top={10} right={0}>
-                                <ExportedImage
-                                    src={`/accf_logo.png`}
-                                    alt="ACCF Logo"
-                                    width={100}
-                                    height={100}
-                                    priority
-                                    style={{ objectFit: "contain", width: 'auto', height: 'auto', cursor: 'pointer' }}
-                                    onClick={() => window.location.href = '/'}
-                                />
-                            </Grid> */}
+                            </Grid>}
                         </Grid>
 
                         <Box sx={{
                             display: { xs: 'none', md: 'flex' },
                         }}>
-                            <ExportedImage
+                            {HospitalDetails.logo_primary == null?<></>:
+                            <Image
                                 src={`https://accf-api.cancercareinstituteguwahati.org/storage/${removeBackslashes(HospitalDetails.logo_primary)}`}
                                 alt="ACCF Logo"
                                 width={100}
@@ -123,7 +117,7 @@ const Header = () => {
                                 priority
                                 style={{ objectFit: "contain", width: '100px', height: '100px', cursor: 'pointer' }}
                                 onClick={() => window.location.href = '/'}
-                            />
+                            />}
                         </Box>
                         <Box textAlign={{ xs: "center", md: "left" }}>
                             <Typography variant="h6" fontWeight="bold">
@@ -144,17 +138,18 @@ const Header = () => {
                             </Typography>
                         </Box>
                         <Box sx={{
-                            display: { xs: 'none', md: 'none' },
+                            display: { xs: 'none', md: 'flex' },
                         }}>
-                            <ExportedImage
-                                src={`/accf_logo.png`}
+                            {HospitalDetails.logo_secondary == null?<></>:
+                            <Image
+                                src={`https://accf-api.cancercareinstituteguwahati.org/storage/${removeBackslashes(HospitalDetails.logo_secondary)}`}
                                 alt="ACCF Logo"
                                 width={100}
                                 height={100}
                                 priority
-                                style={{ objectFit: "contain", width: 'auto', height: 'auto', cursor: 'pointer' }}
+                                style={{ objectFit: "contain", width: '100px', height: '100px', cursor: 'pointer' }}
                                 onClick={() => window.location.href = '/'}
-                            />
+                            />}
                         </Box>
                     </Grid>
 
@@ -199,17 +194,11 @@ const Header = () => {
                     // height:'120px'
                 }}
             >
-                <Navbar Title={HospitalDetails?.name} OurHospitals={OurHospitals} Facilities={Facilities} />
-                {/* You can enable the UPDATES section here if needed */}
+                <Navbar Title={HospitalDetails?.name}/>
                 <Box style={{ display: 'flex', width: '100%', justifyContent: 'center', position: 'absolute' }}>
                     <hr style={{ borderTop: "1px solid lightgray", display: 'flex', width: '100%' }} />
                 </Box>
             </Box>
-
-            {/* Contact Us Modal */}
-            {/* <Box display="flex" width="100%" justifyContent="center">
-                <ContactUs open={open} handleClose={() => setOpen(false)} />
-            </Box> */}
             {/* {VideosAccess?<Box display="flex" width="100%" justifyContent="center">
                 <LatestEvent open={open} handleClose={() => setOpen(false)} setOpen={setOpen}/>
             </Box>:<></>} */}

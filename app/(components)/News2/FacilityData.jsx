@@ -1,11 +1,9 @@
 "use client";
 import { Box, Button, Grid, Typography } from "@mui/material";
-import ExportedImage from "next-image-export-optimizer";
-import { color } from "../Global";
 import { useSelector } from "react-redux";
 import { selectFacilities } from "@/redux/features/facilitiesSlice";
 import Loader from "../Loader";
-import { useEffect, useState, useRef } from "react";
+import { useEffect} from "react";
 import { useMediaQuery } from '@mui/material';
 import ReadMoreText from "./ReadMoreText";
 import { selectNewses } from "@/redux/features/newsSlice";

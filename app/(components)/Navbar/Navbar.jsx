@@ -1,24 +1,22 @@
 "use client";
-import { useState } from "react";
-import { usePathname } from 'next/navigation';
+import { useEffect, useState } from "react";
 import {
-  AppBar, Box, Toolbar, IconButton, Typography, Button, Drawer,
-  List, ListItem, ListItemText, Menu, MenuItem, Avatar,
+  AppBar, Box, Toolbar, IconButton, Typography, Button,
   Grid
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import ExportedImage from "next-image-export-optimizer";
 import Link from "next/link";
-import { ExpandMore } from "@mui/icons-material";
-import { HName } from "../Global";
 import { motion } from "framer-motion";
 import ContactUsDropdown from './ContactUsDropdown';
-import FacilitiesDropdown from './FacilitiesDropDown';
 import { HomePageAccess, AboutUsAccess, FacilitiesAccess, HospitalsAccess, NewsAndEventsAccess, ContactUsAccess, SocialInfraAccess, AcademicsAccess } from "@/lib/fetchData";
 import { useSelector } from "react-redux";
 import { NavBackground, NavElements } from '../Global';
-import { selectDoctors } from "@/redux/features/doctorSlice";
 import MobileView from './MobileView';
+import { selectHospitals } from "@/redux/features/hospitalSlice";
+import { selectFacilities } from "@/redux/features/facilitiesSlice";
+import FacilitiesDropdown from './FacilitiesDropDown';
+import HospitalsDropdown from './HospitalsDropDown';
+import Image from "next/image";
 const navItems = [
   { name: "Home", link: "/", Active: HomePageAccess },
   { name: "About Us", link: "/about_us", Active: AboutUsAccess },
@@ -30,17 +28,13 @@ const navItems = [
   { name: "Contact Us", link: "/contact", Active: ContactUsAccess },
 ];
 
-export default function Navbar({ Title, OurHospitals, Facilities }) {
+export default function Navbar({ Title }) {
+  const [hydrated, setHydrated] = useState(false);
+  const OurHospitals = useSelector(selectHospitals)
+  const Facilities = useSelector(selectFacilities);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorE2, setAnchorE2] = useState(null); // separate for facilities
-  const doctors = useSelector(selectDoctors);
-
-  const pathname = usePathname();
-  // const searchParams = useSearchParams();
-  const showSpecialButton = pathname === '/consultants';
-  const HoName = HName;
-
   const handleDrawerToggle = () => setMobileOpen((prev) => !prev);
   const handleHospitalsClick = (event) => setAnchorEl(event.currentTarget);
   const handleFacilitiesClick = (event) => setAnchorE2(event.currentTarget);
@@ -48,6 +42,9 @@ export default function Navbar({ Title, OurHospitals, Facilities }) {
   const handleHospitalsClose = () => setAnchorEl(null);
   const handleFacilitiesClose = () => setAnchorE2(null);
 
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -56,9 +53,9 @@ export default function Navbar({ Title, OurHospitals, Facilities }) {
       transition={{ duration: 0.5 }}
     >
       <AppBar elevation={0} position="static" style={{ zIndex: 10, backgroundColor: NavBackground, color: 'black' }}>
-        <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", position: 'relative', zIndex: 6, minHeight: '52px !important', }} boxShadow={0}>
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", position: 'relative', zIndex: 6, minHeight: '52px !important', }} boxshadow={0}>
           <Box sx={{ display: { xs: "none", md: "none" }, mr: 1 }}>
-            <ExportedImage src="/vercel.gif" alt="logo" width={50} height={50} />
+            <Image src="/vercel.gif" alt="logo" width={50} height={50} />
           </Box>
           <Typography sx={{ display: { xs: "none", md: "none" }, fontSize: "1rem", fontWeight: "bold" }}>
             {Title}
@@ -74,77 +71,13 @@ export default function Navbar({ Title, OurHospitals, Facilities }) {
                       case "Hospitals":
                         return (
                           <Box key={item.name}>
-                            <Button
-                              sx={{ color: NavElements }}
-                              onClick={handleHospitalsClick}
-                              aria-controls={anchorEl ? "hospitals-menu" : undefined}
-                              aria-haspopup="true"
-                            >
-                              {item.name} <ExpandMore />
-                            </Button>
-                            <Menu
-                              id="hospitals-menu"
-                              anchorEl={anchorEl}
-                              open={Boolean(anchorEl)}
-                              onClose={handleHospitalsClose}
-                            >
-                              {OurHospitals?.length > 0 ? (
-                                OurHospitals.map((hospital) => (
-                                  <MenuItem key={hospital.name} onClick={handleHospitalsClose}>
-                                    <a
-                                      href={hospital.location}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      style={{ textDecoration: "none", color: "inherit" }}
-                                    >
-                                      <Typography >{hospital.name}</Typography>
-                                    </a>
-                                  </MenuItem>
-                                ))
-                              ) : (
-                                <MenuItem disabled>
-                                  <Typography >No hospitals available</Typography>
-                                </MenuItem>
-                              )}
-                            </Menu>
+                            <HospitalsDropdown item={item} Hospitals={OurHospitals}/>
                           </Box>
                         );
                       case "Facilities":
                         return (
-                          // <FacilitiesDropdown item={item} Facilities={Facilities}/>
-                          <Box key={item.id}>
-                            <Button
-                              sx={{ color: NavElements }}
-                              onClick={handleFacilitiesClick}
-                              aria-controls={anchorE2 ? "facilities-menu" : undefined}
-                              aria-haspopup="true"
-                            >
-                              {item.name} <ExpandMore />
-                            </Button>
-                            <Menu
-                              id="facilities-menu"
-                              anchorEl={anchorE2}
-                              open={Boolean(anchorE2)}
-                              onClose={handleFacilitiesClose}
-                            >
-                              {Facilities?.length > 0 ? (
-                                Facilities.map((facility) => (
-                                  <Link
-                                    key={facility.id}
-                                    href={`/facilities#${facility.id}`}
-                                    passHref
-                                    legacyBehavior
-                                  >
-                                    <MenuItem key={facility.id} onClick={handleFacilitiesClose}>
-                                      <Typography >{facility.name}</Typography>
-                                    </MenuItem></Link>
-                                ))
-                              ) : (
-                                <MenuItem disabled>
-                                  <Typography >No facilities available</Typography>
-                                </MenuItem>
-                              )}
-                            </Menu>
+                          <Box key={item.name}>
+                            <FacilitiesDropdown item={item} Facilities={Facilities}/>
                           </Box>
                         );
                       case "Contact Us":
@@ -164,14 +97,14 @@ export default function Navbar({ Title, OurHospitals, Facilities }) {
               </> : <><SearchDoctors doctors={doctors} /></>} */}
             </Grid>
           </Grid>
-          {SocialInfraAccess ? <Link href="/social_infra" passHref legacyBehavior>
+          {/* {SocialInfraAccess ? <Link href="/social_infra" passHref legacyBehavior>
             <Box sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}>
               <Button sx={{ color: "#fff" }}>
                 <Avatar alt="Social Infrastructure" sx={{ backgroundColor: "white", marginRight: "2px" }} src="/SocialInfra/soc_inf.png" />
                 Social Infrastructure
               </Button>
             </Box>
-          </Link> : <></>}
+          </Link> : <></>} */}
 
 
           <IconButton edge="end" sx={{ display: { xs: "block", lg: "none" }, color: "#fff", position: 'absolute' }} onClick={handleDrawerToggle}>

@@ -10,6 +10,7 @@ import { GrLocation } from "react-icons/gr";
 import axios from 'axios';
 import { useState } from "react";
 import ErrorMessage from '../ErrorMessage';
+import Loader from "../Loader";
 
 const ContactPage = () => {
     const [name, setName] = useState(null);
@@ -21,7 +22,7 @@ const ContactPage = () => {
     const [errorType, setErrorType] = useState('error');
     const HospitalDetails = useSelector(selectHospitalDetails);
     if (!HospitalDetails) {
-        return <Typography textAlign="center" mt={5}>Loading...</Typography>;
+        return (<Loader/>);
     }
 
     const Validate = () => {
@@ -84,7 +85,7 @@ const ContactPage = () => {
         if (Validate()) {
             try {
                 const result = await axios.post("https://accf-api.cancercareinstituteguwahati.org/api/submit-message", {
-                    "hospitalId": "7",
+                    "hospitalId": HospitalDetails.id,
                     "name": name,
                     "email": email,
                     "mobile": mobileNo,

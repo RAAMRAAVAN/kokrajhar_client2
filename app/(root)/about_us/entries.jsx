@@ -1,9 +1,7 @@
 'use client'
 import { Box, Button, Grid, Typography } from "@mui/material";
-import ExportedImage from "next-image-export-optimizer";
-import { API, Font } from "../../(components)/Global";
-import { useEffect, useRef, useState } from "react";
 import ReadMoreText from "@/app/(components)/FacilitiesNew2/ReadMoreText";
+import Image from "next/image";
 const Entries = (props) => {
   const { entries } = props;
   return (
@@ -40,7 +38,7 @@ const Entries = (props) => {
               padding: { sm: 0, md: 3 }
             }}
             >
-              <ExportedImage
+              <Image
                 src={`https://accf-api.cancercareinstituteguwahati.org/storage/${entry.photo}`}
                 // src='/Doctors'
                 alt="img"

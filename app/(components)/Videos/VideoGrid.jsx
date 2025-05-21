@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Grid, IconButton, Typography, useTheme } from '@mui/material';
 import { LatestVideos } from '@/lib/fetchData';
 import { PlayCircleOutline } from '@mui/icons-material';
 import LatestEvent from './LatestEvent/LatestEvent';
 import ReactPlayer from 'react-player';
+import { LatestVideos2 } from '../../../lib/fetchData';
 
 const videoUrlMain = "https://www.youtube.com/embed/xziy2MCp95U?si=iqrifFRxc0Tf2d-7";
 
@@ -24,7 +25,7 @@ const VideoCard = ({ LatestVideosData, setOpen, setSelectedVideo, id }) => {
   >
     {/* <Box >     */}
     <img
-      src={LatestVideosData[id].Image}
+      src={`https://accf-api.cancercareinstituteguwahati.org/storage/${LatestVideosData[id].photo}`}
       style={{
         borderRadius: '20px',
         display: 'flex',
@@ -79,21 +80,21 @@ const VideoCard = ({ LatestVideosData, setOpen, setSelectedVideo, id }) => {
         WebkitBoxOrient: 'vertical',
         textOverflow: 'ellipsis',
         width: '100%',
-        padding:'5px 40px',
+        padding: '5px 40px',
         textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)',
-        background:'#1565c047'
+        background: '#1565c047'
       }}
     >
-      {LatestVideosData[id].Title}
+      {LatestVideosData[id].name}
     </Typography>
 
   </Box>);
 }
-const VideoGrid = () => {
+const VideoGrid = ({LatestVideosData}) => {
   const theme = useTheme();
-  const LatestVideosData = LatestVideos;
   const [open, setOpen] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(null);
+  if(LatestVideosData.length>0)
   return (
     <Box
       sx={{

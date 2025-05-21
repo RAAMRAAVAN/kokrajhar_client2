@@ -1,16 +1,25 @@
+'use client'
 import { Box, Grid, Typography } from "@mui/material";
-import ExportedImage from "next-image-export-optimizer";
-import Entries from "./entries";
-import { API, color1, color4, color6, color7, HName } from "@/app/(components)/Global";
+import { API, color1, color4, color6, color7 } from "@/app/(components)/Global";
 import VideoGrid from "@/app/(components)/Videos/VideoGrid";
 import Facilities from '@/app/(components)/News2/FacilityData'
 // import ParallelogramGrid from './ParallelogramGrid';
-import {VideosAccess} from '../../../lib/fetchData';
-const page = async () => {
-    const HoName = HName;
+import { LatestVideos2, VideosAccess } from '../../../lib/fetchData';
+import Image from "next/image";
+import { useEffect, useState } from "react";
+const page = () => {
+    const [LatestVideosData, setVideos] = useState([]);
+
+    const fetchVideos = async () => {
+        console.log("fetch videos")
+        setVideos(await LatestVideos2())
+    }
+    useEffect(() => {
+        fetchVideos();
+    }, [])
     return (<>
         <Box display="none" sx={{ position: "relative", overflow: "hidden" }} width="100%" height="350px">
-            <ExportedImage src={`${HoName}News/newsEventsBack.jpg`} alt="background" fill style={{ objectFit: "cover" }} quality={100} />
+            {/* <Image src={`News/newsEventsBack.jpg`} alt="background" fill style={{ objectFit: "cover" }} quality={100} /> */}
             <Box
                 sx={{
                     position: "absolute",
@@ -67,13 +76,13 @@ const page = async () => {
         <Box display="flex" justifyContent="center" marginY={5}>
             <Facilities />
         </Box>
-        {VideosAccess ? <Box display='flex' width='100%' justifyContent='center'>
+        {LatestVideosData.length > 0 ? <Box display='flex' width='100%' justifyContent='center'>
             <Box display='flex' width='90%' flexDirection='column' marginTop={2}>
                 <Typography variant="h5" fontWeight="bold" marginBottom={3}>
                     Our Stories
                 </Typography>
                 {/* <Suspense> */}
-                <VideoGrid />
+                <VideoGrid LatestVideosData={LatestVideosData}/>
                 {/* </Suspense> */}
             </Box>
         </Box> : <></>}

@@ -58,21 +58,6 @@ const DoctorSlider = () => {
         trackMouse: true,
     });
 
-    // useEffect(() => {
-    //     const preloadImages = () => {
-    //         filteredDoctors.forEach((doctor) => {
-    //             if (doctor.doctor_image && !preloadedImages.has(doctor.doctor_image)) {
-    //                 const img = new Image();
-    //                 img.src = doctor.doctor_image;
-    //                 img.onload = () => {
-    //                     setPreloadedImages((prev) => new Set(prev).add(doctor.doctor_image));
-    //                 };
-    //             }
-    //         });
-    //     };
-    //     preloadImages();
-    // }, [filteredDoctors]);
-
     return (<>
         <Box display='flex' width='100%' justifyContent='center'>
             <Grid container display='flex' sx={{width: { lg: '90%', md: "90%", sm: "100%", xs:"90%"}}} alignItems='center' marginTop={5} justifyContent='space-between'>

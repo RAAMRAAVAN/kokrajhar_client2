@@ -1,12 +1,12 @@
 // "use client";
 import { Box } from "@mui/material";
-import ExportedImage from "next-image-export-optimizer";
+import Image from "next/image";
 
 const AnimatedImages = () => {
   return (
     <Box className="animation-container">
       {/* Background Image */}
-      <ExportedImage
+      <Image
         src="/Footer/footer_bg.png"
         alt="background"
         fill
@@ -16,7 +16,7 @@ const AnimatedImages = () => {
       />
 
       {/* Moving Car */}
-      <ExportedImage
+      <Image
         src="/Footer/car.gif"
         alt="car"
         width={250}
@@ -26,7 +26,7 @@ const AnimatedImages = () => {
       />
 
       {/* Moving Cyclist */}
-      <ExportedImage
+      <Image
         src="/Footer/cyclist.gif"
         alt="cyclist"
         width={100}

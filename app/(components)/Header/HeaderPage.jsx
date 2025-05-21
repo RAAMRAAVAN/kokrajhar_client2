@@ -1,7 +1,6 @@
 'use client'
 import Header from './Header'
-import { fetchDoctors2, FetchFacilitiesData2, FetchHospitalDetails, FetchHospitalsData2, fetchNewsAndEvents2, ImageSliderData } from "@/lib/fetchData";
-import APICalls from './APICalls';
+import { fetchDoctors2, FetchFacilitiesData2, FetchHospitalDetails, FetchHospitalsData2, fetchNewsAndEvents2 } from "@/lib/fetchData";
 import { setDoctors } from "@/redux/features/doctorSlice";
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -18,7 +17,7 @@ const HeaderPage = () => {
             const data = await fetchDoctors2();
             // console.log("API=", data, data?.length);
             if(data?.length)
-                {dispatch(setDoctors(data)); console.log("dispatched")}
+                {dispatch(setDoctors(data));}
         } catch (error) {
             console.error("Error fetching hospital data:", error);
         } finally {
@@ -90,7 +89,6 @@ const HeaderPage = () => {
     // console.log("Client API's", Doctors, news);
 
     return (<>
-    <APICalls/>
     <Header/>
     </>);
 }

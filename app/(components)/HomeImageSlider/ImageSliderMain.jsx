@@ -2,7 +2,6 @@
 import ImageSlider from './ImageSlider'
 import { ImageSliderData } from '../../../lib/fetchData';
 import { useEffect, useState } from 'react';
-import Loader from '../Loader';
 const ImageSliderMain = () => {
     const [images, setImages] = useState([]);
     const fetchImageSlider = async () => {

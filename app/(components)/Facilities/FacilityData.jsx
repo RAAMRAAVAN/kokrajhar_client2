@@ -1,12 +1,12 @@
 'use client';
 import { Box, Button, Grid, Typography } from "@mui/material";
-import ExportedImage from "next-image-export-optimizer";
 import { color, color1, color3, color5, Font } from "../Global";
 import { useSelector } from "react-redux";
 import { selectFacilities } from "@/redux/features/facilitiesSlice";
 import Loader from '../Loader';
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const Facilities = () => {
     const facilities = useSelector(selectFacilities);
@@ -70,7 +70,7 @@ const Facilities = () => {
                                     position: "relative",
                                 }}
                             >
-                                <ExportedImage
+                                <Image
                                     src={`https://accf-api.cancercareinstituteguwahati.org/storage/${facility.photo}`}
                                     alt='img'
                                     className="facility-image"

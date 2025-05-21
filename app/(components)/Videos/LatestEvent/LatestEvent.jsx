@@ -44,8 +44,8 @@ const LatestEvent = ({ open, setOpen, selectedVideo}) => {
                         {/* Make sure ReactPlayer re-renders by updating key */}
                         <VideoPlayer
                             key={1} // This will force the video to reset on change
-                            url={selectedVideo.Link}
-                            title={selectedVideo.Title}
+                            url={selectedVideo.video || selectedVideo.link}
+                            title={selectedVideo.name}
                             handleClose={handleClose}
                             onVideoEnd={handleVideoEnd}
                         />
@@ -56,17 +56,18 @@ const LatestEvent = ({ open, setOpen, selectedVideo}) => {
 };
 
 const VideoPlayer = ({ url, handleClose, title, onVideoEnd }) => {
+    const [handlePlay, setHandlePlay] = useState(true);
     return (
         <Box sx={{ width: '100%' }}>
             <Box display='flex' width='100%' justifyContent='space-between'>
-                <Typography marginLeft={1} fontSize="16px" gutterBottom color="gray" fontWeight='bold'>{title}</Typography>
+                <Typography marginLeft={1} fontSize="16px" gutterBottom color="white" fontWeight='bold' sx={{textShadow: '1px 1px 2px rgba(0,0,0,0.6)'}}>{title}</Typography>
                 {/* Close Button */}
                 <Box
                     sx={{
                         bgcolor: "background.paper",
                     }}
                 >
-                    <IconButton sx={{ padding: '0' }} onClick={handleClose}>
+                    <IconButton sx={{ padding: '0' }} onClick={()=>{handleClose();setHandlePlay(false)}}>
                         <CloseIcon />
                     </IconButton>
                 </Box>
@@ -80,9 +81,9 @@ const VideoPlayer = ({ url, handleClose, title, onVideoEnd }) => {
                 }}
             >
                 <ReactPlayer
-                    url={url}
+                    url={`https://accf-api.cancercareinstituteguwahati.org/storage/${url}`}
                     controls
-                    playing
+                    playing={handlePlay}
                     // muted
                     onEnded={onVideoEnd}
                     width="100%"
