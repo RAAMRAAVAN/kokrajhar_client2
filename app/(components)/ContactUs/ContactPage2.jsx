@@ -22,7 +22,7 @@ const ContactPage = () => {
     const [errorType, setErrorType] = useState('error');
     const HospitalDetails = useSelector(selectHospitalDetails);
     if (!HospitalDetails) {
-        return (<Loader/>);
+        return (<Loader />);
     }
 
     const Validate = () => {
@@ -158,7 +158,7 @@ const ContactPage = () => {
                         <Box padding={3}>
                             <Typography fontFamily='Montserrat,sans-serif' fontWeight='600' fontSize='20px' color="#454545">Talk to Us</Typography>
                         </Box>
-                        <Box paddingX={3} paddingBottom={2} display='flex' component="a"
+                        {HospitalDetails.phone2 !== null ? <Box paddingX={3} paddingBottom={2} display='flex' component="a"
                             href={`tel:${HospitalDetails.phone2}`} sx={{ cursor: "pointer", '&:hover': { color: 'black' } }}>
                             <Box
                                 sx={{
@@ -188,15 +188,17 @@ const ContactPage = () => {
                                 </Avatar>
                             </Box>
 
-
+                                        
                             <Box>
                                 <Typography fontWeight='bold' color="#58595b">Hospital's Phone Number</Typography>
                                 <Box display='flex' alignItems='baseline' sx={{ flexDirection: 'column' }}>
                                     <Typography color="#58595b">{HospitalDetails.phone2}</Typography>
                                 </Box>
                             </Box>
-                        </Box>
+                        </Box> : <></>}
+                        
                         <Box display='none' width='100%' borderTop='0.2px #B0B0B0 solid'></Box>
+                        {HospitalDetails.phone !== null ?
                         <Box paddingX={3} paddingBottom={2} display='flex' component="a"
                             href={`tel: ${HospitalDetails.phone}`} sx={{ cursor: "pointer", '&:hover': { color: 'black' } }}>
                             <Box
@@ -240,7 +242,7 @@ const ContactPage = () => {
                                 </Box>
                                 <Typography color="#58595b" fontWeight='bold' fontSize={12}>(9:00 AM to 5:00 PM IST, Monday to Saturday)</Typography>
                             </Box>
-                        </Box>
+                        </Box>:<></>}
                         <Box display='flex' width='100%' borderTop='0.2px #B0B0B0 solid'></Box>
                         <Box paddingX={3} paddingY={2} display='flex'>
                             <Box

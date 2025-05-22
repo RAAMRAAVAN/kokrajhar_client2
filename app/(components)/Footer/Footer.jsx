@@ -35,7 +35,7 @@ const Footer = () => {
             <ListItemIcon sx={{ minWidth: "16px", color: "gray" }}>
                 <FiberManualRecord fontSize="small" sx={{ fontSize: "8px" }} />
             </ListItemIcon>
-            <Typography  sx={{ color: "gray", fontSize: "14px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", '&:hover':{color: 'black'} }}>
+            <Typography sx={{ color: "gray", fontSize: "14px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", '&:hover': { color: 'black' } }}>
                 {text}
             </Typography>
         </ListItem>
@@ -47,21 +47,21 @@ const Footer = () => {
 
                 {/* Our Hospitals */}
                 <Grid item xs={12} sm={6} lg={2}>
-                    <Typography  variant="h6" mb={1}>ACCF Network</Typography>
+                    <Typography variant="h6" mb={1}>ACCF Network</Typography>
                     {hospitalList.map((hospital, index) => (
                         <Box key={hospital.id || index} onClick={() => window.open(hospital.location, '_blank')} sx={{
                             cursor: 'pointer', '&:hover': {
                             },
 
                         }} >
-                            <RenderListItem text={hospital.id === 1?"SCI":hospital.name.split(' ')[0]} />
+                            <RenderListItem text={hospital.id === 1 ? "SCI" : hospital.name.split(' ')[0]} />
                         </Box>
                     ))}
                 </Grid>
 
                 {/* Facilities */}
                 <Grid item xs={12} sm={6} lg={4}>
-                    <Typography  variant="h6" mb={1}>Facilities</Typography>
+                    <Typography variant="h6" mb={1}>Facilities</Typography>
                     <Grid container spacing={1}>
                         {facilityList.map((facility, index) => (
                             <Grid item xs={6} key={facility.id || index} sx={{
@@ -77,32 +77,31 @@ const Footer = () => {
 
                 {/* Contact Us */}
                 <Grid item xs={12} sm={6} lg={3}>
-                    <Typography  variant="h6" mb={1}>Contact Us</Typography>
-                    {hospitalData.PhoneNumber !== null?
-                    <Typography  color="gray" fontSize="14px" display="flex" alignItems="center" mb={1} component="a"
-                        href={`tel:${hospitalData.phone2}`} sx={{ textDecoration: "none", cursor: "pointer", '&:hover':{color: 'black'} }}>
-                        <Phone sx={{ color: "gray", mr: 1 }} /> {hospitalData.phone2}
-                    </Typography>:<></>}
-                    <Typography  color="gray" fontSize="14px" display="flex" alignItems="center" mb={1} component="a"
-                        href={`tel:${hospitalData.phone || ""}`} sx={{ textDecoration: "none", cursor: "pointer", '&:hover':{color: 'black'} }}>
+                    <Typography variant="h6" mb={1}>Contact Us</Typography>
+                    {hospitalData.phone2 !== null ?
+                        <Typography color="gray" fontSize="14px" display="flex" alignItems="center" mb={1} component="a"
+                            href={`tel:${hospitalData.phone2}`} sx={{ textDecoration: "none", cursor: "pointer", '&:hover': { color: 'black' } }}>
+                            <Phone sx={{ color: "gray", mr: 1 }} /> {hospitalData.phone2}
+                        </Typography> : <></>}
+                    {hospitalData.phone !== null ? <Typography color="gray" fontSize="14px" display="flex" alignItems="center" mb={1} component="a"
+                        href={`tel:${hospitalData.phone || ""}`} sx={{ textDecoration: "none", cursor: "pointer", '&:hover': { color: 'black' } }}>
                         <Phone sx={{ color: "gray", mr: 1 }} /> {hospitalData.phone || "Not Available"}
-                    </Typography>
-                    
-                    
-                    {/* <Typography  color="gray" fontSize="14px" display="flex" alignItems="center" mb={1} component="a"
-                        href={`https://wa.me/9435647725`}
+                    </Typography> : <></>}
+                    {hospitalData.whatsapp !== null ? <Typography color="gray" fontSize="14px" display="flex" alignItems="center" mb={1} component="a"
+                        href={`https://wa.me/${hospitalData.whatsapp}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        sx={{ textDecoration: "none", cursor: "pointer", '&:hover':{color: 'black'} }}>
-                        <WhatsApp sx={{ color: "gray", mr: 1 }} /> 9435647725
-                    </Typography> */}
+                        sx={{ textDecoration: "none", cursor: "pointer", '&:hover': { color: 'black' } }}>
+                        <WhatsApp sx={{ color: "gray", mr: 1 }} /> {hospitalData.whatsapp}
+                    </Typography> : <></>}
 
-                    <Typography  color="gray" fontSize="14px" display="flex" alignItems="center" mb={1} component="a"
-                        href="mailto:info@accf.in"
-                        sx={{ textDecoration: "none", cursor: "pointer", '&:hover':{color: 'black'} }}>
-                        <Mail sx={{ color: "gray", mr: 1 }} /> info@accf.in
-                    </Typography>
-                    <Typography 
+                    {hospitalData.email !== null ? <Typography color="gray" fontSize="14px" display="flex" alignItems="center" mb={1} component="a"
+                        href={hospitalData.email}
+                        sx={{ textDecoration: "none", cursor: "pointer", '&:hover': { color: 'black' } }}>
+                        <Mail sx={{ color: "gray", mr: 1 }} /> {hospitalData.email}
+                    </Typography> : <></>}
+
+                    <Typography
                         color="gray"
                         fontSize="14px"
                         display="flex"
@@ -113,7 +112,7 @@ const Footer = () => {
                         href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(hospitalData.address || "")}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        sx={{ textDecoration: "none", cursor: "pointer", '&:hover':{color: 'black'} }}
+                        sx={{ textDecoration: "none", cursor: "pointer", '&:hover': { color: 'black' } }}
                     >
                         <LocationCity sx={{ color: "gray", mr: 1 }} /> {hospitalData.address || "Not Available"}
                     </Typography>
@@ -128,7 +127,7 @@ const Footer = () => {
 
                 {/* Location */}
                 <Grid item xs={12} sm={6} lg={3}>
-                    <Typography  variant="h6" mb={1}>Landmark</Typography>
+                    <Typography variant="h6" mb={1}>Landmark</Typography>
                     <GoogleMapEmbed URL={hospitalData.gmap || ""} />
                 </Grid>
 
