@@ -12,7 +12,8 @@ const videoUrlMain = "https://www.youtube.com/embed/xziy2MCp95U?si=iqrifFRxc0Tf2
 
 const VideoCard = ({ LatestVideosData, setOpen, setSelectedVideo, id }) => {
   return (<Box
-    display="flex"
+    // display={LatestVideosData[id] !== undefined?"flex": "none"}
+    display='flex'
     width="100%"
     height='100%'
     sx={{
@@ -24,7 +25,8 @@ const VideoCard = ({ LatestVideosData, setOpen, setSelectedVideo, id }) => {
     boxShadow={5}
   >
     {/* <Box >     */}
-    <img
+    {LatestVideosData[id] === undefined ? <div style={{ width: '100%', height: '100px', overflow: 'hidden' }}>
+    </div> : <img
       src={`https://accf-api.cancercareinstituteguwahati.org/storage/${LatestVideosData[id].photo}`}
       style={{
         borderRadius: '20px',
@@ -40,7 +42,8 @@ const VideoCard = ({ LatestVideosData, setOpen, setSelectedVideo, id }) => {
         // Reset the scale when the mouse leaves
         e.target.style.transform = 'scale(1)';
       }}
-    />
+    />}
+
     {/* </Box> */}
 
     {/* Play button with a click handler */}
@@ -55,6 +58,7 @@ const VideoCard = ({ LatestVideosData, setOpen, setSelectedVideo, id }) => {
         cursor: 'pointer',
         // zIndex:'20001'
       }}
+      disabled={LatestVideosData[id] === undefined}
       onClick={() => {
         setSelectedVideo(id);
         setOpen(true);
@@ -63,8 +67,7 @@ const VideoCard = ({ LatestVideosData, setOpen, setSelectedVideo, id }) => {
     >
       <PlayCircleOutline sx={{ fontSize: '60px', }} />
     </IconButton>
-
-    <Typography
+    {LatestVideosData[id] === undefined ? <></> : <Typography
       sx={{
         color: 'white',
         fontSize: '14px',
@@ -86,54 +89,77 @@ const VideoCard = ({ LatestVideosData, setOpen, setSelectedVideo, id }) => {
       }}
     >
       {LatestVideosData[id].name}
-    </Typography>
+    </Typography>}
+
 
   </Box>);
 }
-const VideoGrid = ({LatestVideosData}) => {
+const VideoGrid = ({ LatestVideosData }) => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(null);
-  if(LatestVideosData.length>0)
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        gap: 2,
-        // backgroundColor: '#444',
-        margin: '10px 0 20px 0',
-        width: '100%',
-      }}
-    >
-      {open ? <Box display="flex" width="100%" justifyContent="center" sx={{
-        justifyContent: 'center',
-        alignItems: 'center', border: '1px black solid'
-      }}>
-        <LatestEvent open={open} setOpen={setOpen} selectedVideo={LatestVideosData[selectedVideo]} />
-      </Box> : <></>}
-      <Grid container spacing={3}>
-        <Grid item md={3} xs={12} container spacing={1}>
-          <Grid item xs={12} height='50%'>
-            <VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={0} />
-          </Grid>
-          <Grid item xs={12} height='50%'>
-            <VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={2} />
-          </Grid>
-        </Grid>
-        <Grid item md={6} xs={12} display='flex' alignItems='center'>
-          <VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={4} />
-        </Grid>
-        <Grid item md={3} xs={12} container spacing={1}>
-          <Grid item xs={12}>
-            <VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={1} />
-          </Grid>
-          <Grid item xs={12}>
-            <VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={3} />
-          </Grid>
-        </Grid>
 
-        {/* <Grid item md={6} xs={12} display='flex' alignItems='center'>
+  // const LatestVideosData2=6;
+  const [size, setSize] = useState(1);
+  const [custom_array, setCustomArray] = useState([1]);
+  const value = 1;
+
+  useEffect(() => {
+    if (LatestVideosData.length > 5)
+      setSize(Math.ceil(LatestVideosData.length / 5));
+  }, [LatestVideosData.length])
+
+  useEffect(() => {
+    setCustomArray(Array.from({ length: size }).map((_, index) => value * (index + 1)));
+  }, [size]);
+
+  console.log("custom array=", custom_array);
+
+  if (LatestVideosData.length > 0)
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 2,
+          // backgroundColor: '#444',
+          margin: '10px 0 20px 0',
+          width: '100%',
+        }}
+      >
+        {open ? <Box display="flex" width="100%" justifyContent="center" sx={{
+          justifyContent: 'center',
+          alignItems: 'center', border: '1px black solid'
+        }}>
+          <LatestEvent open={open} setOpen={setOpen} selectedVideo={LatestVideosData[selectedVideo]} />
+        </Box> : <></>}
+        <Grid container spacing={3}>
+          {custom_array.map((value, index) => {
+            return (<>
+              <Grid item md={3} xs={12} container spacing={1}>
+                <Grid item xs={12} height='50%'>
+                  <VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={0 + index * 5} />
+                </Grid>
+                <Grid item xs={12} height='50%'>
+                  <VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={2 + index * 5} />
+                </Grid>
+              </Grid>
+              <Grid item md={6} xs={12} display='flex' alignItems='center'>
+                <VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={4 + index * 5} />
+              </Grid>
+              <Grid item md={3} xs={12} container spacing={1}>
+                <Grid item xs={12}>
+                  <VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={1 + index * 5} />
+                </Grid>
+                <Grid item xs={12}>
+                  <VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={3 + index * 5} />
+                </Grid>
+              </Grid>
+            </>)
+          })}
+
+
+          {/* <Grid item md={6} xs={12} display='flex' alignItems='center'>
           <Box sx={{ margin: 'auto' }}>
             <Box>
 
@@ -161,9 +187,9 @@ const VideoGrid = ({LatestVideosData}) => {
               />
             </Box>
           </Grid> */}
-      </Grid>
-    </Box>
-  );
+        </Grid>
+      </Box>
+    );
 };
 
 export default VideoGrid;
