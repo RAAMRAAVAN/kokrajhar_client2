@@ -58,7 +58,7 @@ const Entries = (props) => {
               {entry.name}
             </Typography>
             {/* <ReadMoreText text={entry.description} lineClamp={8}/> */}
-            <ReadMoreText scrollBack={`AboutTitle${entry.id}`} ShortText={entry.short_description} LongText={entry.description} Expand={false} ReadMoreOption={entry.read_more2}/>
+            <ReadMoreText scrollBack={`AboutTitle${entry.id}`} ShortText={entry.short_description} LongText={entry.description} Expand={false} ReadMoreOption={entry.read_more}/>
           </Box>
         </Grid>
       ))}

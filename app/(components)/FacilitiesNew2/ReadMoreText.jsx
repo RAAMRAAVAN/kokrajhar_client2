@@ -24,11 +24,11 @@ const ReadMoreText = ({ ShortText, LongText, ReadMoreOption, scrollBack, showRea
       {ReadMoreOption? (
         <>
           {!expand ? (
-            <Button sx={{ m: 1 }} onClick={() => setExpand(true)}>
+            <Button sx={{ my: 1, padding:0 }} onClick={() => setExpand(true)}>
               Read More
             </Button>
           ) : (
-            <Button sx={{ m: 1 }} onClick={handleShowLess}>
+            <Button sx={{ my: 1, padding:0 }} onClick={handleShowLess}>
               Show Less
             </Button>
           )}
