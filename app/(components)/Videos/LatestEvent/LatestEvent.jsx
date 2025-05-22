@@ -56,7 +56,7 @@ const LatestEvent = ({ open, setOpen, selectedVideo}) => {
 };
 
 const VideoPlayer = ({ url, handleClose, title, onVideoEnd }) => {
-    const [handlePlay, setHandlePlay] = useState(true);
+    const [handlePlay, setHandlePlay] = useState(false);
     return (
         <Box sx={{ width: '100%' }}>
             <Box display='flex' width='100%' justifyContent='space-between'>
@@ -67,7 +67,7 @@ const VideoPlayer = ({ url, handleClose, title, onVideoEnd }) => {
                         bgcolor: "background.paper",
                     }}
                 >
-                    <IconButton sx={{ padding: '0' }} onClick={()=>{handleClose();setHandlePlay(false)}}>
+                    <IconButton sx={{ padding: '0' }} onClick={()=>{handleClose();}}>
                         <CloseIcon />
                     </IconButton>
                 </Box>
