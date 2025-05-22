@@ -24,7 +24,7 @@ const ContactUsDropdown = () => {
       >
         Contact Us <ExpandMore />
       </Button>
-      {open ? <Box boxShadow={3} sx={{ zIndex: 10001 }} borderRadius={1} display='flex' width='200px' backgroundColor='white' position='absolute' flexDirection='column' onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} paddingY={1}>
+      {open ? <Box boxShadow={3} sx={{maxHeight: '300px', overflowY: 'auto', zIndex: 10001 }} borderRadius={1} display='flex' width='200px' backgroundColor='white' position='absolute' flexDirection='column' onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} paddingY={1}>
         <Box padding={1} onClick={() => setOpen(false)} sx={{ cursor: 'pointer', '&:hover': { backgroundColor: 'lightgray', display: 'flex', width: '100%' } }}>
           <Link href="/contact" passHref legacyBehavior>
             <Box display='flex'><RiContactsLine size={24} color="gray" /><Typography color="#454545" marginLeft={1}>Contact Us</Typography></Box>

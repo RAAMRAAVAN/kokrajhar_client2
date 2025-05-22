@@ -20,7 +20,7 @@ const FacilitiesDropdown = ({ item, Facilities }) => {
       </Button>
 
       {open ?
-        <Box boxShadow={3} sx={{ zIndex: 10001 }} borderRadius={1} display='flex' width='200px' backgroundColor='white' position='absolute' flexDirection='column' onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} paddingY={1}>
+        <Box boxShadow={3} borderRadius={1} display='flex' width='350px' backgroundColor='white' position='absolute' flexDirection='column' onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} paddingY={1} sx={{maxHeight: '300px', overflowY: 'auto', zIndex: 10001 }}>
           {Facilities?.length > 0 ? (
             Facilities.map((facility) => (<Box key={facility.id} padding={1} onClick={() => setOpen(false)} sx={{ cursor: 'pointer', '&:hover': { backgroundColor: 'lightgray', display: 'flex', width: '100%' } }}>
               <Link href={`/facilities#${facility.id}`} passHref legacyBehavior>
