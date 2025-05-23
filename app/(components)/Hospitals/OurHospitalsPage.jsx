@@ -39,7 +39,7 @@ const OurHospitalsPage = () => {
                             }}
                         >
                             <a
-                                href={hospital.domain}
+                                href={hospital.location}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 style={{
