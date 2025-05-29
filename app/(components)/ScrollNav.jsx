@@ -130,9 +130,9 @@ const ScrollNav = () => {
                     px: 4,
                     '&::-webkit-scrollbar': { display: 'none' },
                 }}> 
-                    <Box sx={{ display: { xs: "flex", md: "none" }, alignItems: 'end', marginBottom: 1, }}>
+                    {/* <Box sx={{ display: { xs: "flex", md: "none" }, alignItems: 'end', marginBottom: 1, }}>
                         <Image src={`https://accf-api.cancercareinstituteguwahati.org/storage/${removeBackslashes(HospitalDetails.logo_secondary)}`} alt="logo" width={45} height={40} style={{ display: 'flex', height: '40px' }} />
-                    </Box>
+                    </Box> */}
                     {navItems.map((item, index) => (
                         <Box key={item.to} display="flex" alignItems="center" sx={{ flexShrink: 0 }} ref={el => navRefs.current[index] = el}>
                             <ScrollLink to={item.to} smooth duration={500} offset={-80}>
