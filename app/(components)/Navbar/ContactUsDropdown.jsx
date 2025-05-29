@@ -5,7 +5,7 @@ import { IoIosMail } from "react-icons/io";
 import { IoIosCall } from "react-icons/io";
 import { RiContactsLine } from "react-icons/ri";
 import { ExpandMore } from "@mui/icons-material";
-import { NavElements } from "../Global";
+import { Bold, NavElements } from "../Global";
 import { BsWhatsapp } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { selectHospitalDetails } from "@/redux/features/hospitalDetailSlice";
@@ -18,7 +18,7 @@ const ContactUsDropdown = () => {
       sx={{ display: "inline-block", position: 'relative', zIndex: '10001' }}
     >
       <Button
-        sx={{ color: NavElements }}
+        sx={{ color: NavElements, fontWeight: Bold?'bold':none }}
         onMouseEnter={() => setOpen(true)} // Change onHover to onMouseEnter
         onMouseLeave={() => setOpen(false)} // Optionally, close on mouse leave
       >

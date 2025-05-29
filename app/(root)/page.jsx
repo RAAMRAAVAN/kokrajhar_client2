@@ -20,33 +20,36 @@ import TextCarousel from "../(components)/TextCarousel";
 import ScrollNav from "../(components)/ScrollNav";
 import { useSelector } from "react-redux";
 import { LatestVideos2 } from "../../lib/fetchData";
+import SearchDoctors from "../(components)/DoctorCard/SearchDoctors";
+import { selectDoctors } from "@/redux/features/doctorSlice";
 
 // ✅ Server Component
 const Home = () => {
   // const homeContent = HomeContent;
+  const doctors = useSelector(selectDoctors);
   const HospitalDetails = useSelector(selectHospitalDetails);
 
   const [LatestVideosData, setVideos] = useState([]);
   const [updates, setUpdates] = useState([]);
-  
-    const fetchVideos = async () => {
-      // console.log("fetch videos")
-      setVideos(await LatestVideos2())
-    }
 
-    const fetchUpdates = async () => {
-      // console.log("fetch videos")
-      setUpdates(await FetchUpdates())
-    }
-    useEffect(() => {
-      fetchVideos();
-      fetchUpdates();
-    }, [])
+  const fetchVideos = async () => {
+    // console.log("fetch videos")
+    setVideos(await LatestVideos2())
+  }
+
+  const fetchUpdates = async () => {
+    // console.log("fetch videos")
+    setUpdates(await FetchUpdates())
+  }
+  useEffect(() => {
+    fetchVideos();
+    fetchUpdates();
+  }, [])
 
   return (
     <>
-    {/* <ScrollNav/> */}
-      {updates.length >0 ? <TextCarousel updates={updates}/> : <></>}
+
+      {updates.length > 0 ? <TextCarousel updates={updates} /> : <></>}
 
       <Box
         display="flex"
@@ -55,35 +58,39 @@ const Home = () => {
         boxShadow="5px 5px 15px rgba(0, 0, 0, 0.3)"
         marginBottom={3}
         sx={{ backgroundColor: '#f6f6f6', color: 'black' }}
-        fontFamily='fantasy'
+        // fontFamily='fantasy'
       >
+        <ScrollNav />
         {/* Intro */}
-          <Box display="flex" width="100%" sx={{ flexDirection: { xs: "column", md: "row" } }}>
-            <Suspense fallback={<Loader />}>
-              <ImageSliderMain />
-            </Suspense>
-            <Box paddingX={2} sx={{ width: { xs: "100%", md: "40%" } }}>
-              {HospitalDetails ? (
-                <>
-                  <Typography variant="h6">{HospitalDetails.intro_heading}</Typography>
-                  <Typography textAlign="justify" fontSize={14}>{HospitalDetails.intro}</Typography>
-                </>
-              ) : (
-                <Loader />
-              )}
+        {/* <Box display="flex" width="100%" sx={{ flexDirection: { xs: "column", md: "row" } }}>
+          <Suspense fallback={<Loader />}>
+            <ImageSliderMain />
+          </Suspense>
+          <Box paddingX={2} sx={{ width: { xs: "100%", md: "40%" } }}>
+            <Box position='relative' marginY={2} sx={{display:{md:'none', lg:'none', sm:'flex', xs:'flex'}}}>
+              <SearchDoctors doctors={doctors} />
             </Box>
+            {HospitalDetails ? (
+              <>
+                <Typography variant="h6">{HospitalDetails.intro_heading}</Typography>
+                <Typography textAlign="justify" fontSize={14}>{HospitalDetails.intro}</Typography>
+              </>
+            ) : (
+              <Loader />
+            )}
           </Box>
+        </Box> */}
 
         {/* Consultants Section */}
-        <Element name="Doctors">
+        {/* <Element name="Doctors">
           <Box marginX={1} display="flex" flexDirection='column'>
             <Suspense fallback={<Loader />}>
               <DoctorSlider />
             </Suspense>
           </Box>
-        </Element>
+        </Element> */}
 
-        <Element name="Accomp">
+        {/* <Element name="Accomp">
           <Box marginY={5} textAlign="center" display="flex" justifyContent='center' flexDirection='column' >
             <Typography fontWeight="bolder" variant="h5" zIndex={2}>
               Our Accomplishments
@@ -94,10 +101,10 @@ const Home = () => {
               </Suspense>
             </Box>
           </Box>
-        </Element>
+        </Element> */}
         {/* Facilities */}
-        <Element name="Facilities">
-          <Box display='flex' width='100%' justifyContent='center'  marginTop={5}>
+        {/* <Element name="Facilities">
+          <Box display='flex' width='100%' justifyContent='center' marginTop={5}>
             <Box display='flex' width='90%' flexDirection='column'>
               <Typography variant="h5" fontWeight="bold" marginY={2}>
                 Facilities
@@ -107,10 +114,10 @@ const Home = () => {
               </Suspense>
             </Box>
           </Box>
-        </Element>
+        </Element> */}
 
-        <Element name="Partners">
-          <Box display='flex' width='100%' justifyContent='center'  marginTop={5}>
+        {/* <Element name="Partners">
+          <Box display='flex' width='100%' justifyContent='center' marginTop={5}>
             <Box display='flex' width='90%' flexDirection='column' marginTop={2}>
               <ScrollReveal animation="grow" sx={{ display: 'inline-block' }}>
                 <Typography variant="h5" fontWeight="bold" marginBottom={3} sx={{ display: 'inline-block' }}>
@@ -123,30 +130,30 @@ const Home = () => {
 
             </Box>
           </Box>
-        </Element>
+        </Element> */}
         {/* What's Happening */}
-        <Element name="Featured">
+        {/* <Element name="Featured">
           <Suspense fallback={<Loader />}>
             <WhatsHappening />
           </Suspense>
-        </Element>
+        </Element> */}
 
-        <Element name="Stories">
-          {LatestVideosData.length > 0 ? <Box display='flex' width='100%' justifyContent='center'  marginTop={5}>
+        {/* <Element name="Stories">
+          {LatestVideosData.length > 0 ? <Box display='flex' width='100%' justifyContent='center' marginTop={5}>
             <Box display='flex' width='90%' flexDirection='column' marginTop={2}>
               <Typography variant="h5" fontWeight="bold" marginBottom={3}>
                 Our Stories
               </Typography>
               <Suspense>
-                <VideoGrid  LatestVideosData={LatestVideosData}/>
+                <VideoGrid LatestVideosData={LatestVideosData} />
               </Suspense>
             </Box>
           </Box> : <></>}
-        </Element>
+        </Element> */}
 
 
         {/* Our Hospitals */}
-        <Element name="Network">
+        {/* <Element name="Network">
           <Box display='flex' width='100%' justifyContent='center' marginTop={5}>
             <Box display='flex' width='90%' flexDirection='column'>
               <Typography variant="h5" fontWeight="bold" marginBottom={3}>
@@ -157,7 +164,7 @@ const Home = () => {
               </Suspense>
             </Box>
           </Box>
-        </Element>
+        </Element> */}
       </Box>
     </>
   );

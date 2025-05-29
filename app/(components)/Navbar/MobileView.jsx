@@ -38,7 +38,7 @@ export const MobileView = ({ mobileOpen, handleDrawerToggle, OurHospitals }) => 
 
   return (
     <Drawer anchor="right" open={mobileOpen} onClose={handleClose}>
-      <Box sx={{ width: '80vw', display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <Box sx={{ width: '100vw', display: 'flex', flexDirection: 'column', height: '100%' }}>
         <Box sx={{ display: "flex", justifyContent: "flex-end", p: 2 }}>
           <IconButton onClick={handleClose}>
             <CloseIcon />

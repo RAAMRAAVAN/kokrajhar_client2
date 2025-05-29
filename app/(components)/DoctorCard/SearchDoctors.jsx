@@ -45,7 +45,7 @@ const CustomPopper = ({
             anchorEl={anchorEl}
             placement="bottom-start"
             modifiers={[{ name: 'offset', options: { offset: [0, 8] } }]}
-            style={{ display: 'flex', position: 'absolute', zIndex: 3 }}
+            style={{ display: 'flex', position: 'absolute', zIndex: 2 }}
         >
             <Grid
                 container
@@ -363,7 +363,7 @@ const SearchDoctors = ({ doctors }) => {
                                 },
                             },
                             position: 'relative',
-                            zIndex: 4,
+                            zIndex: 3,
                             padding:0,
                             // border:'1px black solid',
                             margin:0

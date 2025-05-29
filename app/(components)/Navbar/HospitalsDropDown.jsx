@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Box, Button, Menu, MenuItem, Typography } from "@mui/material";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Link from "next/link";
-import { NavElements } from "../Global";
+import { Bold, NavElements } from "../Global";
 
 const HospitalsDropdown = ({ item, Hospitals }) => {
     const [open, setOpen] = useState(false)
@@ -12,7 +12,7 @@ const HospitalsDropdown = ({ item, Hospitals }) => {
             key={item.name}
         >
             <Button
-                sx={{ color: NavElements }}
+                sx={{ color: NavElements, fontWeight: Bold?'bold':none }}
                 onMouseEnter={() => setOpen(true)} // Change onHover to onMouseEnter
                 onMouseLeave={() => setOpen(false)} // Optionally, close on mouse leave
             >

@@ -1,19 +1,21 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Box, Fab, Grid, Typography } from "@mui/material";
-import { KeyboardArrowUp } from "@mui/icons-material";
+import { BottomNavigation, BottomNavigationAction, Box, Fab, Grid, Typography } from "@mui/material";
+import { Favorite, KeyboardArrowUp, Restore } from "@mui/icons-material";
 import Navbar from "../Navbar/Navbar";
 import SocialIcons from "../SocialIcons";
-import { color1} from "../Global";
+import { color1 } from "../Global";
 import Loader from "../Loader";
 import { color } from "../Global";
 import { removeBackslashes, VideosAccess } from "@/lib/fetchData";
 import { useSelector } from "react-redux";
 import { selectHospitalDetails } from "@/redux/features/hospitalDetailSlice";
 import Image from "next/image";
+import BottomNavigationComponent from './BottomNavigationComponent';
 
 const Header = () => {
     const HospitalDetails = useSelector(selectHospitalDetails);
+    const [mobileOpen, setMobileOpen] = useState(false);
     const [open, setOpen] = useState(false);
     const [hydrated, setHydrated] = useState(false);
     // console.log("logo=", `https://accf-api.cancercareinstituteguwahati.org/storage/${removeBackslashes(HospitalDetails.logo_primary)}`)
@@ -48,11 +50,12 @@ const Header = () => {
                     position: "relative",
                     top: 0,
                     zIndex: 1000,
-                    marginY:'5px', 
+                    // marginTop:'5px', 
                     px: { xs: 2, md: 4 },
                     justifyContent: "center",
                     color: "black",
-                    marginBottom: { xs: '10px', md: '10px' }
+                    // border:"1px black solid",
+                    marginBottom: { xs: '0px', md: '0px' }
                 }}
             // mb={2}
             >
@@ -71,55 +74,23 @@ const Header = () => {
                             // position: 'relative'
                         }}
                     >
-                        <Grid item xs={12} sx={{
-                            display: { sm: 'flex', md: 'none' },
-                            justifyContent: 'space-between',
-                            width: '100%',
-                            // border: '1px black solid',
-                            flexDirection: 'column',
-                            position: 'relative'
-                        }}>
-                            {HospitalDetails.logo_primary == null?<></>:
-                            <Grid item xs={5}>
-                                <Image
-                                    src={`https://accf-api.cancercareinstituteguwahati.org/storage/${removeBackslashes(HospitalDetails.logo_primary)}`}
-                                    alt="SCI Logo"
-                                    width={100}
-                                    height={100}
-                                    priority
-                                    style={{ objectFit: "contain", width: '100', height: '100', cursor: 'pointer' }}
-                                    onClick={() => window.location.href = '/'}
-                                />
-                            </Grid>}
-                            {HospitalDetails.logo_secondary == null?<></>:
-                            <Grid item xs={5} position='absolute' top={10} right={0}>
-                                <Image
-                                    src={`https://accf-api.cancercareinstituteguwahati.org/storage/${removeBackslashes(HospitalDetails.logo_secondary)}`}
-                                    alt="ACCF Logo"
-                                    width={90}
-                                    height={90}
-                                    priority
-                                    style={{ objectFit: "contain", width: 'auto', height: 'auto', cursor: 'pointer' }}
-                                    onClick={() => window.location.href = '/'}
-                                />
-                            </Grid>}
-                        </Grid>
-
                         <Box sx={{
                             display: { xs: 'none', md: 'flex' },
                         }}>
-                            {HospitalDetails.logo_primary == null?<></>:
-                            <Image
-                                src={`https://accf-api.cancercareinstituteguwahati.org/storage/${removeBackslashes(HospitalDetails.logo_primary)}`}
-                                alt="ACCF Logo"
-                                width={100}
-                                height={100}
-                                priority
-                                style={{ objectFit: "contain", width: '100px', height: '100px', cursor: 'pointer' }}
-                                onClick={() => window.location.href = '/'}
-                            />}
+                            {HospitalDetails.logo_primary == null ? <></> :
+                                <Image
+                                    src={`https://accf-api.cancercareinstituteguwahati.org/storage/${removeBackslashes(HospitalDetails.logo_primary)}`}
+                                    alt="ACCF Logo"
+                                    width={100}
+                                    height={100}
+                                    priority
+                                    style={{ objectFit: "contain", width: '100px', height: '100px', cursor: 'pointer' }}
+                                    onClick={() => window.location.href = '/'}
+                                />}
                         </Box>
-                        <Box textAlign={{ xs: "center", md: "left" }}>
+                        <Box textAlign={{ xs: "center", md: "left" }} sx={{
+                            display: { xs: 'none', md: 'flex' }, flexDirection: 'column'
+                        }}>
                             <Typography variant="h6" fontWeight="bold">
                                 {HospitalDetails.aname}
                             </Typography>
@@ -140,21 +111,21 @@ const Header = () => {
                         <Box sx={{
                             display: { xs: 'none', md: 'flex' },
                         }}>
-                            {HospitalDetails.logo_secondary == null?<></>:
-                            <Image
-                                src={`https://accf-api.cancercareinstituteguwahati.org/storage/${removeBackslashes(HospitalDetails.logo_secondary)}`}
-                                alt="ACCF Logo"
-                                width={100}
-                                height={100}
-                                priority
-                                style={{ objectFit: "contain", width: '100px', height: '100px', cursor: 'pointer' }}
-                                onClick={() => window.location.href = '/'}
-                            />}
+                            {HospitalDetails.logo_secondary == null ? <></> :
+                                <Image
+                                    src={`https://accf-api.cancercareinstituteguwahati.org/storage/${removeBackslashes(HospitalDetails.logo_secondary)}`}
+                                    alt="ACCF Logo"
+                                    width={100}
+                                    height={100}
+                                    priority
+                                    style={{ objectFit: "contain", width: '100px', height: '100px', cursor: 'pointer' }}
+                                    onClick={() => window.location.href = '/'}
+                                />}
                         </Box>
                     </Grid>
 
                     {/* Contact Info and Social Icons */}
-                    <Grid item xs={12} md={5} sx={{ textAlign: { xs: "center", md: "right" } }}>
+                    <Grid item xs={12} md={5} sx={{ textAlign: { xs: "center", md: "right" }, display: { xs: 'none', md: 'flex' }, flexDirection: 'column' }}>
                         <Typography
                             variant="h6"
                             component="a"
@@ -177,11 +148,13 @@ const Header = () => {
                                 mt: 1,
                             }}
                         >
-                            <SocialIcons/>
+                            <SocialIcons />
                         </Box>
                     </Grid>
                 </Grid>
             </Box>
+
+            <Typography textAlign='center' sx={{ display: { md: 'none', lg: 'none', sm: 'flex', xs: 'flex', xl: 'none' }, justifyContent: 'center' }} marginTop={1} color="#bf1e2e" fontWeight='bold'>{HospitalDetails?.name}</Typography>
 
             {/* Sticky Navbar */}
             <Box
@@ -191,12 +164,13 @@ const Header = () => {
                     top: 0,
                     zIndex: 5,
                     backgroundColor: "white",
-                    // height:'120px'
+                    // boxShadow:3
+                    // border:'1px white solid'
                 }}
             >
-                <Navbar Title={HospitalDetails?.name}/>
-                <Box style={{ display: 'flex', width: '100%', justifyContent: 'center', position: 'absolute' }}>
-                    <hr style={{ borderTop: "1px solid lightgray", display: 'flex', width: '100%' }} />
+                <Navbar Title={HospitalDetails?.name} setMobileOpen={setMobileOpen} mobileOpen={mobileOpen}/>
+                <Box sx={{ display: 'flex', justifyContent: 'center', position: 'absolute', width: '100%' }}>
+                    <hr style={{ borderTop: "1px solid lightgray", width: '100%' }} />
                 </Box>
             </Box>
             {/* {VideosAccess?<Box display="flex" width="100%" justifyContent="center">
@@ -209,7 +183,7 @@ const Header = () => {
                 aria-label="scroll-top"
                 sx={{
                     position: "fixed",
-                    bottom: 16,
+                    bottom: 66,
                     right: 16,
                     zIndex: 1000,
                     backgroundColor: color,
@@ -222,6 +196,7 @@ const Header = () => {
             >
                 <KeyboardArrowUp />
             </Fab>
+            <BottomNavigationComponent setMobileOpen={setMobileOpen} mobileOpen={mobileOpen}/>
         </>
     );
 };

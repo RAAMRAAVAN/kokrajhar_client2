@@ -17,7 +17,7 @@ const Consultants = () => {
     const [departments, setDepartments] = useState([]);
     const [open, setOpen] = useState(false);
     const router = useRouter();
-    const [value, setValue] = useState(department || '');
+    const [value, setValue] = useState(department || 'All Department');
     const selectDepartmentRef = useRef(null);
 
     // Update `value` if URL query param changes
@@ -25,6 +25,8 @@ const Consultants = () => {
         if (department) {
             setValue(department);
         }
+        else
+            setValue('All Department')
     }, [department]);
 
     // Extract unique departments from doctor data
@@ -89,7 +91,7 @@ const Consultants = () => {
                             }
                             onClick={handleDepartmentClick}
                         >
-                            {value || "Select Department"}
+                            {value || "All Department"}
                         </Button>
 
                         {open && (
@@ -115,6 +117,18 @@ const Consultants = () => {
                                     }}
                                 >
                                     <List>
+                                        <ListItem
+                                                // key={index}
+                                                sx={{ cursor: 'pointer' }}
+                                                onMouseDown={(e) => e.preventDefault()}
+                                                onClick={() => {
+                                                    setOpen(false);
+                                                    setValue('All Department');
+                                                    router.push(`/consultants`);
+                                                }}
+                                            >
+                                                All Departments
+                                            </ListItem>
                                         {departments.map((dept, index) => (
                                             <ListItem
                                                 key={index}

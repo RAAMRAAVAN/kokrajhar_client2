@@ -9,7 +9,7 @@ export const color7 = '#6e48aa'; //
 
 export const MedantaOrange = '#f04e30';
 
-const NewNav = false;
+const NewNav = true;
 export const Color8 = 'white';
 export const Color9 = 'black'
 export const NavBackground = NewNav?Color8: null;
