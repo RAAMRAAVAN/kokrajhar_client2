@@ -3,28 +3,29 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { selectFacilities } from "@/redux/features/facilitiesSlice";
 import Loader from "../Loader";
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { useMediaQuery } from '@mui/material';
 import ReadMoreText from "./ReadMoreText";
 import { selectNewses } from "@/redux/features/newsSlice";
 import ImageSlider from "../ImageSlider";
+import ScrollReveal from "../Animation/ScrollReveal";
 
 function formatDateToReadable(dateStr) {
-    const date = new Date(dateStr);
+  const date = new Date(dateStr);
 
-    const day = date.getDate();
-    const month = date.toLocaleString('default', { month: 'long' });
-    const year = date.getFullYear();
+  const day = date.getDate();
+  const month = date.toLocaleString('default', { month: 'long' });
+  const year = date.getFullYear();
 
-    // Helper to get ordinal suffix (st, nd, rd, th)
-    const getOrdinal = (n) => {
-        const s = ["th", "st", "nd", "rd"];
-        const v = n % 100;
-        return s[(v - 20) % 10] || s[v] || s[0];
-    };
+  // Helper to get ordinal suffix (st, nd, rd, th)
+  const getOrdinal = (n) => {
+    const s = ["th", "st", "nd", "rd"];
+    const v = n % 100;
+    return s[(v - 20) % 10] || s[v] || s[0];
+  };
 
-    const dayWithSuffix = day.toString().padStart(2, '0') + getOrdinal(day);
-    return `${dayWithSuffix} ${month} ${year}`;
+  const dayWithSuffix = day.toString().padStart(2, '0') + getOrdinal(day);
+  return `${dayWithSuffix} ${month} ${year}`;
 }
 
 
@@ -51,7 +52,7 @@ const Facilities = ({ expand, FID }) => {
 
   return (
     <Box paddingY={2} marginX={2} display='flex' width='100%' flexDirection='column'>
-      {News.map((news, index) => (
+      {News.map((news, index) => (<ScrollReveal animation="grow" timeout={1000}>
         <Box
           key={news.id}
           id={news.id}
@@ -106,6 +107,7 @@ const Facilities = ({ expand, FID }) => {
             </Box>
           </Box>
         </Box>
+        </ScrollReveal>
       ))}
     </Box>
   );

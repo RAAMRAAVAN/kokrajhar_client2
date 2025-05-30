@@ -7,6 +7,7 @@ import Loader from '../Loader';
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import ScrollReveal from "../Animation/ScrollReveal";
 
 const Facilities = () => {
     const facilities = useSelector(selectFacilities);
@@ -31,7 +32,7 @@ const Facilities = () => {
     }
     return (
         <Box paddingY={2}>
-            {facilities.map((facility, index) => (
+            {facilities.map((facility, index) => (<ScrollReveal animation="grow" timeout={1000}>
                 <Box
                     key={facility.id}
                     id={facility.id}
@@ -99,7 +100,7 @@ const Facilities = () => {
                                 backgroundColor: 'transparent'
                             }}
                         >
-                            <Typography variant="h6" sx={{"&:hover":{color: color3}, fontWeight:'bold'}}>
+                            <Typography variant="h6" sx={{ "&:hover": { color: color3 }, fontWeight: 'bold' }}>
                                 {facility.name}
                             </Typography>
                             <Box
@@ -119,15 +120,15 @@ const Facilities = () => {
                                     borderRadius={20}
                                 ></Box>
                             </Box>
-                            <Typography  sx={{ fontSize: { xs: "14px", md: "16px" },whiteSpace: "pre-line", overflow:'hidden' }}>
+                            <Typography sx={{ fontSize: { xs: "14px", md: "16px" }, whiteSpace: "pre-line", overflow: 'hidden' }}>
                                 {facility.short_description}
                             </Typography>
                             {facility.read_more ? <Box sx={{ display: "flex", marginTop: "auto" }} onClick={() => router.push(`/facilities?expand=true#${facility.id}`)}>
-                                <Button aria-label="Submit Form" sx={{color: color3}}>Read More</Button>
+                                <Button aria-label="Submit Form" sx={{ color: color3 }}>Read More</Button>
                             </Box> : <></>}
                         </Grid>
                     </Grid>
-                </Box>
+                </Box></ScrollReveal>
             ))}
         </Box>
     );

@@ -10,12 +10,11 @@ import ScrollReveal from './Animation/ScrollReveal';
 import Partners from './Partners/Partners';
 import WhatsHappening from './WhatsHappening';
 import VideoGrid from './Videos/VideoGrid';
-import { FetchUpdates, LatestVideos2, removeBackslashes } from '@/lib/fetchData';
+import { LatestVideos2 } from '@/lib/fetchData';
 import SearchDoctors from './DoctorCard/SearchDoctors';
 import { selectDoctors } from '@/redux/features/doctorSlice';
 import { selectHospitalDetails } from '@/redux/features/hospitalDetailSlice';
 import { useSelector } from 'react-redux';
-import Image from 'next/image';
 
 const AccomplishmentsMain = lazy(() => import("./Accomplishments/AccomplichmentsMain"));
 const Facilities = lazy(() => import("./Facilities/FacilityData"));
@@ -112,7 +111,7 @@ const ScrollNav = () => {
         <>
             {/* Navigation Bar */}
             <Box sx={{
-                width: "100vw",
+                width: "100%",
                 overflowX: "hidden",
                 position: "sticky",
                 top: { sm: 56, xs: 56, md: 38 },
@@ -120,19 +119,13 @@ const ScrollNav = () => {
                 backgroundColor: "white",
                 boxShadow: 3
             }}>
-                {/* <Box sx={{ display: 'flex', justifyContent: 'center', position: 'absolute', width: '100%' }}>
-                    <hr style={{ borderTop: "1px solid lightgray", width: '100%' }} />
-                </Box> */}
                 <Box sx={{
                     display: 'flex',
                     overflowX: 'auto',
                     whiteSpace: 'nowrap',
                     px: 4,
                     '&::-webkit-scrollbar': { display: 'none' },
-                }}> 
-                    {/* <Box sx={{ display: { xs: "flex", md: "none" }, alignItems: 'end', marginBottom: 1, }}>
-                        <Image src={`https://accf-api.cancercareinstituteguwahati.org/storage/${removeBackslashes(HospitalDetails.logo_secondary)}`} alt="logo" width={45} height={40} style={{ display: 'flex', height: '40px' }} />
-                    </Box> */}
+                }}>
                     {navItems.map((item, index) => (
                         <Box key={item.to} display="flex" alignItems="center" sx={{ flexShrink: 0 }} ref={el => navRefs.current[index] = el}>
                             <ScrollLink to={item.to} smooth duration={500} offset={-80}>
@@ -160,104 +153,114 @@ const ScrollNav = () => {
                 </Box>
             </Box>
 
-            {/* Sections */}
-            <Element name="Intro">
-                <Box ref={el => sectionRefs.current['Intro'] = el} data-section="Intro"></Box>
-            </Element>
-            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, width: '100%' }}>
-                <Suspense fallback={<Loader />}><ImageSliderMain /></Suspense>
-                <Box px={2} sx={{ width: { xs: "100%", md: "40%" } }}>
-                    <Box sx={{ display: { xs: 'flex', md: 'none' }, my: 2 }}>
-                        <SearchDoctors doctors={doctors} />
-                    </Box>
-                    {HospitalDetails ? (
-                        <>
-                            <Typography variant="h6">{HospitalDetails.intro_heading}</Typography>
-                            <Typography fontSize={14} textAlign="justify">{HospitalDetails.intro}</Typography>
-                        </>
-                    ) : <Loader />}
-                </Box>
-            </Box>
-
-            <Element name="Doctors">
-                <Box ref={el => sectionRefs.current['Doctors'] = el} data-section="Doctors" mx={1} display="flex" flexDirection="column">
-                    <Suspense fallback={<Loader />}><DoctorSlider /></Suspense>
-                </Box>
-            </Element>
-
-            <Element name="Accomp">
-                <Box ref={el => sectionRefs.current['Accomp'] = el} data-section="Accomp" marginTop={5} display="flex" flexDirection="column" alignItems="center">
-                    <Typography variant="h5" fontWeight="bolder">Our Accomplishments</Typography>
-                </Box>
-            </Element>
-            <Box display="flex" flexDirection="column" alignItems="center">
-                <Suspense fallback={<Loader />}><AccomplishmentsMain /></Suspense>
-            </Box>
-
-            <Element name="Facilitie">
-                <Box ref={el => sectionRefs.current['Facilitie'] = el} data-section="Facilitie" marginTop={5} display="flex" flexDirection="column" alignItems="center">
-                    <Box width="90%">
-                        <Typography variant="h5" fontWeight="bold" my={2}>Facilities</Typography>
-                    </Box>
-                </Box>
-            </Element>
-            <Box marginBottom={5} display="flex" flexDirection="column" alignItems="center">
-                <Box width="90%">
-                    <Facilities />
-                </Box>
-            </Box>
-
-            <Element name="Partners">
-                <Box mt={5} display="flex" justifyContent="center" ref={el => sectionRefs.current['Partners'] = el} data-section="Partners">
-                    <Box width="90%">
-                        <ScrollReveal animation="grow">
-                            <Typography variant="h5" fontWeight="bold" mb={3} >Our Partners</Typography>
-                        </ScrollReveal>
-                    </Box>
-                </Box>
-            </Element>
-            <Box display="flex" justifyContent="center">
-                <Box width="90%">
-                    <Suspense fallback={<Loader />}><Partners /></Suspense>
-                </Box>
-            </Box>
-
-            <Element name="Featured">
-                <Box ref={el => sectionRefs.current['Featured'] = el} data-section="Featured">
-
-                </Box>
-            </Element>
-            <Suspense fallback={<Loader />}><WhatsHappening /></Suspense>
-
-            <Element name="Stories">
-                <Box ref={el => sectionRefs.current['Stories'] = el} data-section="Stories">
-                    {LatestVideosData.length > 0 && (
-                        <Box mt={5} display="flex" justifyContent="center">
-                            <Box width="90%">
-                                <Typography variant="h5" fontWeight="bold" mb={3}>Our Stories</Typography>
-
-                            </Box>
+            <Box
+                display="flex"
+                flexDirection="column"
+                width="100%"
+                boxShadow="5px 5px 15px rgba(0, 0, 0, 0.3)"
+                marginBottom={3}
+                sx={{ backgroundColor: '#f6f6f6', color: 'black' }}
+            // fontFamily='fantasy'
+            >
+                {/* Sections */}
+                <Element name="Intro">
+                    <Box ref={el => sectionRefs.current['Intro'] = el} data-section="Intro"></Box>
+                </Element>
+                <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, width: '100%' }}>
+                    <Suspense fallback={<Loader />}><ImageSliderMain /></Suspense>
+                    <Box px={2} sx={{ width: { xs: "100%", md: "40%" } }}>
+                        <Box sx={{ display: { xs: 'flex', md: 'none' }, my: 2 }}>
+                            <SearchDoctors doctors={doctors} />
                         </Box>
-                    )}
-                </Box>
-            </Element>
-            <Box display="flex" justifyContent="center">
-                <Box width="90%">
-                    <Suspense fallback={<Loader />}><VideoGrid LatestVideosData={LatestVideosData} /></Suspense>
-                </Box>
-            </Box>
-
-            <Element name="Network">
-                <Box ref={el => sectionRefs.current['Network'] = el} data-section="Network" mt={5} display="flex" justifyContent="center">
-                    <Box width="90%">
-                        <Typography variant="h5" fontWeight="bold" mb={3}>ACCF Network</Typography>
-
+                        {HospitalDetails ? (
+                            <><ScrollReveal animation="grow">
+                                <Typography variant="h6">{HospitalDetails.intro_heading}</Typography>
+                                <Typography fontSize={14} textAlign="justify">{HospitalDetails.intro}</Typography></ScrollReveal>
+                            </>
+                        ) : <Loader />}
                     </Box>
                 </Box>
-            </Element>
-            <Box display="flex" justifyContent="center">
-                <Box width="90%">
-                    <Suspense fallback={<Loader />}><OurHospitals /></Suspense>
+
+                <Element name="Doctors">
+                    <Box ref={el => sectionRefs.current['Doctors'] = el} data-section="Doctors" mx={1} display="flex" flexDirection="column">
+                        <Suspense fallback={<Loader />}><DoctorSlider /></Suspense>
+                    </Box>
+                </Element>
+
+                <Element name="Accomp">
+                    <Box ref={el => sectionRefs.current['Accomp'] = el} data-section="Accomp" marginTop={5} display="flex" flexDirection="column" alignItems="center">
+                        <Typography variant="h5" fontWeight="bolder">Our Accomplishments</Typography>
+                    </Box>
+                </Element>
+                <Box display="flex" flexDirection="column" alignItems="center">
+                    <Suspense fallback={<Loader />}><AccomplishmentsMain /></Suspense>
+                </Box>
+
+                <Element name="Facilitie">
+                    <Box ref={el => sectionRefs.current['Facilitie'] = el} data-section="Facilitie" marginTop={5} display="flex" flexDirection="column" alignItems="center">
+                        <Box width="90%">
+                            <Typography variant="h5" fontWeight="bold" my={2}>Facilities</Typography>
+                        </Box>
+                    </Box>
+                </Element>
+                <Box marginBottom={5} display="flex" flexDirection="column" alignItems="center">
+                    <Box width="90%">
+                        <Facilities />
+                    </Box>
+                </Box>
+
+                <Element name="Partners">
+                    <Box mt={5} display="flex" justifyContent="center" ref={el => sectionRefs.current['Partners'] = el} data-section="Partners">
+                        <Box width="90%">
+                            <ScrollReveal animation="grow">
+                                <Typography variant="h5" fontWeight="bold" mb={3} >Our Partners</Typography>
+                            </ScrollReveal>
+                        </Box>
+                    </Box>
+                </Element>
+                <Box display="flex" justifyContent="center">
+                    <Box width="90%">
+                        <Suspense fallback={<Loader />}><Partners /></Suspense>
+                    </Box>
+                </Box>
+
+                <Element name="Featured">
+                    <Box ref={el => sectionRefs.current['Featured'] = el} data-section="Featured">
+
+                    </Box>
+                </Element>
+                <Suspense fallback={<Loader />}><WhatsHappening /></Suspense>
+
+                <Element name="Stories">
+                    <Box ref={el => sectionRefs.current['Stories'] = el} data-section="Stories">
+                        {LatestVideosData.length > 0 && (
+                            <Box mt={5} display="flex" justifyContent="center">
+                                <Box width="90%">
+                                    <Typography variant="h5" fontWeight="bold" mb={3}>Our Stories</Typography>
+
+                                </Box>
+                            </Box>
+                        )}
+                    </Box>
+                </Element>
+                <Box display="flex" justifyContent="center">
+                    <Box width="90%">
+                        <Suspense fallback={<Loader />}><VideoGrid LatestVideosData={LatestVideosData} /></Suspense>
+                    </Box>
+                </Box>
+
+                <Element name="Network">
+                    <Box ref={el => sectionRefs.current['Network'] = el} data-section="Network" mt={5} display="flex" justifyContent="center">
+                        <Box width="90%">
+                            <Typography variant="h5" fontWeight="bold" mb={3}>ACCF Network</Typography>
+
+                        </Box>
+                    </Box>
+                </Element>
+                <Box display="flex" justifyContent="center">
+                    <Box width="90%">
+                        <Suspense fallback={<Loader />}><OurHospitals /></Suspense>
+                    </Box>
                 </Box>
             </Box>
         </>

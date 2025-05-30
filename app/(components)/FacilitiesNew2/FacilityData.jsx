@@ -8,6 +8,7 @@ import { useEffect, useState, useRef } from "react";
 import { useMediaQuery } from '@mui/material';
 import ReadMoreText from "./ReadMoreText";
 import Image from "next/image";
+import ScrollReveal from "../Animation/ScrollReveal";
 
 const Facilities = ({ expand, FID }) => {
   const facilities = useSelector(selectFacilities);
@@ -31,7 +32,7 @@ const Facilities = ({ expand, FID }) => {
 
   return (
     <Box paddingY={2} marginX={1}>
-      {facilities.map((facility, index) => (
+      {facilities.map((facility, index) => (<ScrollReveal animation="grow" timeout={1000}>
         <Box
           key={facility.id}
           id={facility.id}
@@ -138,13 +139,14 @@ const Facilities = ({ expand, FID }) => {
                     }}
                   />
                 </Box>
-                <Box sx={{marginX:{xs:0,md:2}}}>
-                  {FID === facility.id ? <><Box display='none'></Box><ReadMoreText ShortText={facility.long_description} LongText={facility.description} Expand={true} ReadMoreOption={facility.read_more2} showReadmore={facility.read_more2} scrollBack={`facility-title-${facility._id}`}/></> : <><ReadMoreText ShortText={facility.long_description} LongText={facility.description} Expand={false} ReadMoreOption={facility.read_more2} showReadmore={facility.read_more2} scrollBack={`facility-title-${facility.id}`}/></>}
+                <Box sx={{ marginX: { xs: 0, md: 2 } }}>
+                  {FID === facility.id ? <><Box display='none'></Box><ReadMoreText ShortText={facility.long_description} LongText={facility.description} Expand={true} ReadMoreOption={facility.read_more2} showReadmore={facility.read_more2} scrollBack={`facility-title-${facility._id}`} /></> : <><ReadMoreText ShortText={facility.long_description} LongText={facility.description} Expand={false} ReadMoreOption={facility.read_more2} showReadmore={facility.read_more2} scrollBack={`facility-title-${facility.id}`} /></>}
                 </Box>
               </Box>
             </Grid>
           </Grid>
         </Box>
+      </ScrollReveal>
       ))}
     </Box>
   );

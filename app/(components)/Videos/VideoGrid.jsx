@@ -7,6 +7,7 @@ import { PlayCircleOutline } from '@mui/icons-material';
 import LatestEvent from './LatestEvent/LatestEvent';
 import ReactPlayer from 'react-player';
 import { LatestVideos2 } from '../../../lib/fetchData';
+import ScrollReveal from '../Animation/ScrollReveal';
 
 const videoUrlMain = "https://www.youtube.com/embed/xziy2MCp95U?si=iqrifFRxc0Tf2d-7";
 
@@ -20,7 +21,7 @@ const VideoCard = ({ LatestVideosData, setOpen, setSelectedVideo, id }) => {
       overflow: 'hidden', // Ensures the image stays within the container
       borderRadius: '20px', // Keeps the image's rounded corners
       position: 'relative',
-
+      // border:'1px black solid'
     }}
     boxShadow={5}
   >
@@ -137,56 +138,28 @@ const VideoGrid = ({ LatestVideosData }) => {
           {custom_array.map((value, index) => {
             return (<>
               <Grid item md={3} xs={12} container spacing={1}>
-                <Grid item xs={12} height='50%'>
-                  <VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={0 + index * 5} />
+                <Grid item xs={12}>
+                  <ScrollReveal animation="grow" timeout={1000}><VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={0 + index * 5} /></ScrollReveal>
                 </Grid>
-                <Grid item xs={12} height='50%'>
-                  <VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={2 + index * 5} />
+                <Grid item xs={12}>
+                  <ScrollReveal animation="grow" timeout={1000}><VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={2 + index * 5} /></ScrollReveal>
                 </Grid>
               </Grid>
+
               <Grid item md={6} xs={12} display='flex' alignItems='center'>
-                <VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={4 + index * 5} />
+                <ScrollReveal animation="grow" timeout={1000}><VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={4 + index * 5} /></ScrollReveal>
               </Grid>
+
               <Grid item md={3} xs={12} container spacing={1}>
                 <Grid item xs={12}>
-                  <VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={1 + index * 5} />
+                  <ScrollReveal animation="grow" timeout={1000}><VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={1 + index * 5} /></ScrollReveal>
                 </Grid>
                 <Grid item xs={12}>
-                  <VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={3 + index * 5} />
+                  <ScrollReveal animation="grow" timeout={1000}><VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={3 + index * 5} /></ScrollReveal>
                 </Grid>
               </Grid>
             </>)
           })}
-
-
-          {/* <Grid item md={6} xs={12} display='flex' alignItems='center'>
-          <Box sx={{ margin: 'auto' }}>
-            <Box>
-
-              <video width="640" height="360" controls>
-                <source src="SCI/video/SCI-OT.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-
-            </Box>
-          </Box>
-        </Grid>
-
-        <Grid item md={6} xs={12}>
-            <Box display='flex' width='100%' height='100%'>
-              <iframe
-                width="100%"
-                // height="180"
-                src={videoUrlMain}
-                title="YouTube video"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-                style={{ borderRadius: '10px' }}
-              />
-            </Box>
-          </Grid> */}
         </Grid>
       </Box>
     );

@@ -2,11 +2,12 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import ReadMoreText from "@/app/(components)/FacilitiesNew2/ReadMoreText";
 import Image from "next/image";
+import ScrollReveal from "@/app/(components)/Animation/ScrollReveal";
 const Entries = (props) => {
   const { entries } = props;
   return (
     <Box display="flex" flexDirection="column" width="100%" >
-      {entries.map((entry, index) => (
+      {entries.map((entry, index) => (<ScrollReveal animation="grow" timeout={1000}>
         <Grid
           key={entry.id}
           container
@@ -16,11 +17,11 @@ const Entries = (props) => {
             justifyContent: "center",
             mb: 2,
             // border:'1px black solid', //
-            borderRadius:{xs:'20px', md: 'none'},
-            background: {xs:"linear-gradient(to right, #ded5d9, #e1e5ea)", md:'white'},
-            boxShadow:{xs:'3', md: 'none'}
+            borderRadius: { xs: '20px', md: 'none' },
+            background: { xs: "linear-gradient(to right, #ded5d9, #e1e5ea)", md: 'white' },
+            boxShadow: { xs: '3', md: 'none' }
           }}
-          
+
         >
           <Box
             sx={{ fontSize: { xs: "14px", md: "16px" } }}
@@ -58,9 +59,10 @@ const Entries = (props) => {
               {entry.name}
             </Typography>
             {/* <ReadMoreText text={entry.description} lineClamp={8}/> */}
-            <ReadMoreText scrollBack={`AboutTitle${entry.id}`} ShortText={entry.short_description} LongText={entry.description} Expand={false} ReadMoreOption={entry.read_more}/>
+            <ReadMoreText scrollBack={`AboutTitle${entry.id}`} ShortText={entry.short_description} LongText={entry.description} Expand={false} ReadMoreOption={entry.read_more} />
           </Box>
         </Grid>
+      </ScrollReveal>
       ))}
     </Box>
   );
@@ -92,7 +94,7 @@ export default Entries;
 
 //   return (
 //     <Box padding={1} >
-//       <Typography 
+//       <Typography
 //         ref={ref}
 //         sx={style}
 //         style={{ whiteSpace: "pre-line"}}

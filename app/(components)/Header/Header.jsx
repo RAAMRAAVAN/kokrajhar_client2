@@ -163,9 +163,10 @@ const Header = () => {
                     position: "sticky",
                     top: 0,
                     zIndex: 5,
+                    paddingTop:{xs:1, md:0},
                     backgroundColor: "white",
                     // boxShadow:3
-                    // border:'1px white solid'
+                    // border:'1px black solid'
                 }}
             >
                 <Navbar Title={HospitalDetails?.name} setMobileOpen={setMobileOpen} mobileOpen={mobileOpen}/>

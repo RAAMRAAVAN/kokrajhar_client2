@@ -50,7 +50,7 @@ const Home = () => {
     <>
 
       {updates.length > 0 ? <TextCarousel updates={updates} /> : <></>}
-
+      <ScrollNav />
       <Box
         display="flex"
         flexDirection="column"
@@ -60,7 +60,7 @@ const Home = () => {
         sx={{ backgroundColor: '#f6f6f6', color: 'black' }}
         // fontFamily='fantasy'
       >
-        <ScrollNav />
+        
         {/* Intro */}
         {/* <Box display="flex" width="100%" sx={{ flexDirection: { xs: "column", md: "row" } }}>
           <Suspense fallback={<Loader />}>

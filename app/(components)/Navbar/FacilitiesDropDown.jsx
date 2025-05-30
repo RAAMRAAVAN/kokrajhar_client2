@@ -4,7 +4,7 @@ import ExpandMore from "@mui/icons-material/ExpandMore";
 import Link from "next/link";
 import { Bold, NavElements } from "../Global";
 
-const FacilitiesDropdown = ({ item, Facilities }) => {
+const FacilitiesDropdown = ({ item, Facilities, selectedPage, setSelectedPage }) => {
   const [open, setOpen] = useState(false)
 
   return (
@@ -12,7 +12,10 @@ const FacilitiesDropdown = ({ item, Facilities }) => {
       key={item.name}
     >
       <Button
-        sx={{ color: NavElements, fontWeight: Bold?'bold':none }}
+        sx={{ color: NavElements, fontWeight: Bold?'bold':none, backgroundColor: selectedPage === item.link ? 'action.hover' : 'transparent',
+          '&:hover': {
+            backgroundColor: 'action.hover',
+          }, marginRight: '1px' }}
         onMouseEnter={() => setOpen(true)} // Change onHover to onMouseEnter
         onMouseLeave={() => setOpen(false)} // Optionally, close on mouse leave
       >
@@ -24,7 +27,7 @@ const FacilitiesDropdown = ({ item, Facilities }) => {
           {Facilities?.length > 0 ? (
             Facilities.map((facility) => (<Box key={facility.id} padding={1} onClick={() => setOpen(false)} sx={{ cursor: 'pointer', '&:hover': { backgroundColor: 'lightgray', display: 'flex', width: '100%' } }}>
               <Link href={`/facilities#${facility.id}`} passHref legacyBehavior>
-                <Box display='flex'><Typography color="#454545" marginLeft={1}>{facility.name}</Typography></Box>
+                <Box display='flex' onClick={() => { setSelectedPage(item.link) }}><Typography color="#454545" marginLeft={1}>{facility.name}</Typography></Box>
               </Link>
             </Box>)))
             : (
