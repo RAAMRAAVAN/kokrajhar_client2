@@ -37,7 +37,7 @@ const AnimatedCounter = ({
 
   return (
     <Typography ref={ref} variant={variant} {...props}>
-      {count.toLocaleString()}
+      {count}
     </Typography>
   );
 };
