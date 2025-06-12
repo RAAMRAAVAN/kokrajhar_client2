@@ -277,10 +277,10 @@ const ContactPage = () => {
                                 <Box>
                                     <Typography fontWeight='bold' color="#58595b">Follow us</Typography>
                                     <Box>
-                                        <Facebook sx={{ color: '#58595b', marginRight: 1, cursor: 'pointer' }} onClick={() => window.open(HospitalDetails.Facebook, "_blank")} />
-                                        <X sx={{ color: '#58595b', marginRight: 1, cursor: 'pointer' }} onClick={() => window.open(HospitalDetails.Twitter, "_blank")} />
-                                        <Instagram sx={{ color: '#58595b', marginRight: 1, cursor: 'pointer' }} onClick={() => window.open(HospitalDetails.Insta, "_blank")} />
-                                        <YouTube sx={{ color: '#58595b', fontSize: 30, marginRight: 1, cursor: 'pointer' }} onClick={() => window.open("/", "_blank")} />
+                                        <Facebook sx={{ color: '#58595b', marginRight: 1, cursor: 'pointer' }} onClick={() => window.open(HospitalDetails.facebook, "_blank")} />
+                                        <X sx={{ color: '#58595b', marginRight: 1, cursor: 'pointer' }} onClick={() => window.open(HospitalDetails.twitter, "_blank")} />
+                                        <Instagram sx={{ color: '#58595b', marginRight: 1, cursor: 'pointer' }} onClick={() => window.open(HospitalDetails.instagram, "_blank")} />
+                                        {/* <YouTube sx={{ color: '#58595b', fontSize: 30, marginRight: 1, cursor: 'pointer' }} onClick={() => window.open("/", "_blank")} /> */}
                                     </Box>
                                 </Box>
                             </Box>
