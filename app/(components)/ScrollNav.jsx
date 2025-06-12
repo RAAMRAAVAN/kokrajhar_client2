@@ -173,9 +173,9 @@ const ScrollNav = () => {
                             <SearchDoctors doctors={doctors} />
                         </Box>
                         {HospitalDetails ? (
-                            <><ScrollReveal animation="grow">
+                            <>
                                 <Typography variant="h6">{HospitalDetails.intro_heading}</Typography>
-                                <Typography fontSize={14} textAlign="justify">{HospitalDetails.intro}</Typography></ScrollReveal>
+                                <Typography fontSize={14} textAlign="justify">{HospitalDetails.intro}</Typography>
                             </>
                         ) : <Loader />}
                     </Box>

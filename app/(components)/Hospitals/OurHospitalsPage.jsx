@@ -20,7 +20,8 @@ const OurHospitalsPage = () => {
                             display: "flex",
                             cursor: "pointer",
                         }}
-                    ><ScrollReveal animation="grow" timeout={1000}>
+                    >
+                        {/* <ScrollReveal animation="grow" timeout={1000}> */}
                             <Box
                                 sx={{
                                     display: "flex",
@@ -68,7 +69,7 @@ const OurHospitalsPage = () => {
                                     </Typography>
                                 </a>
                             </Box>
-                        </ScrollReveal>
+                        {/* </ScrollReveal> */}
                     </Grid>
                 ))}
             </Grid>
