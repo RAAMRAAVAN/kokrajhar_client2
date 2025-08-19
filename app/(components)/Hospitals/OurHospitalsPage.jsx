@@ -13,7 +13,7 @@ const OurHospitalsPage = () => {
                 {ourHospitals.map((hospital) => (
                     <Grid
                         key={hospital.id}
-                        item md={2} lg={2} xs={12}
+                        item md={3} lg={3} xs={12}
                         sx={{
                             justifyContent: "center",
                             alignItems: "center",

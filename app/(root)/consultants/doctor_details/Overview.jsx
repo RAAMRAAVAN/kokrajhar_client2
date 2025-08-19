@@ -34,9 +34,10 @@ const handleShare = async () => {
   }
 };
 
-const Overview = () => {
-  const doctorDetails = useSelector(selectDoctorById());
-  const DoctorsAvailability = useSelector(selectDoctorsAvailability);
+const Overview = ({doctorData}) => {
+  const doctorDetails = doctorData;
+  // const DoctorsAvailability = useSelector(selectDoctorsAvailability);
+  const DoctorsAvailability = true;
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(dayjs());
   const [loading, setLoading] = useState(false);

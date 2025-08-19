@@ -59,7 +59,7 @@ const ContactUsDropdown = ({item, selectedPage, setSelectedPage}) => {
         {HospitalDetails.email !== null ? <Box padding={1} sx={{ cursor: 'pointer', borderTop: '1px lightgray solid', '&:hover': { backgroundColor: 'lightgray', display: 'flex', width: '100%' } }}>
           <Box onClick={() => setOpen(false)} display='flex'><IoIosMail size={24} color="gray" />
             <Typography component="a"
-              href={`mailto:${hospitalData.email}`}
+              href={`mailto:${HospitalDetails.email}`}
               sx={{ cursor: "pointer" }} color="#454545" marginLeft={1}>{HospitalDetails.email}</Typography>
           </Box>
         </Box> : <></>}

@@ -132,8 +132,8 @@ const CustomPopper = ({
                                                         setOpen(false);
                                                         setInputValue(doctor.name);
                                                         setOpenDoctors(false);
-                                                        dispatch(setDoctorID(doctor.id));
-                                                        router.push('/consultants/doctor_details');
+                                                        // dispatch(setDoctorID(doctor.id));
+                                                        router.push(`/consultants/doctor_details?id=${doctor.id}`);
                                                     }}
                                                 >
                                                     {doctor.name}

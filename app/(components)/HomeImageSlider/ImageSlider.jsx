@@ -67,7 +67,7 @@ const ImageSlider = ({ Images = [] }) => {
                 height={300}
                 style={{
                   width: "100%",
-                  // height: "auto",
+                  height: "100%",
                   objectFit: "cover",
                   transition: "transform 1.5s ease-in-out",
                 }}

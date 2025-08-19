@@ -20,8 +20,8 @@ const DoctorSlider = () => {
 
     const isXs = useMediaQuery("(max-width:600px)");
     const isSm = useMediaQuery("(min-width:601px) and (max-width:960px)");
-    const isMd = useMediaQuery("(min-width:961px) and (max-width:1280px)");
-    const isLg = useMediaQuery("(min-width:1281px)");
+    const isMd = useMediaQuery("(min-width:961px) and (max-width:1200px)");
+    const isLg = useMediaQuery("(min-width:1201px)");
 
     const doctorsPerPage = isXs ? 1 : isSm ? 2 : isMd ? 2 : 3;
 

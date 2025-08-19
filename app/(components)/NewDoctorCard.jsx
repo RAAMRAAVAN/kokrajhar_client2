@@ -11,16 +11,22 @@ import {
   LinearProgress,
   Tab,
   Avatar,
+  IconButton,
 } from "@mui/material";
-import { TaskAlt, FiberManualRecord } from "@mui/icons-material";
+import { TaskAlt, FiberManualRecord, ShareOutlined } from "@mui/icons-material";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import Link from "next/link";
 import { Font, HomeDoctorList } from "./Global";
 import DINCModal from "../(components)/DoctorCard/DINCModal";
-import { selectDoctorById, selectDoctorsAvailability, setDoctorID } from "@/redux/features/doctorSlice";
+import {
+  selectDoctorById,
+  selectDoctorsAvailability,
+  setDoctorID,
+} from "@/redux/features/doctorSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "./Loader";
 import ScrollReveal from "./Animation/ScrollReveal";
+import ShareButton from "./ShareMenue";
 
 // Preload Images
 const preloadImage = (src) => {
@@ -32,7 +38,15 @@ const preloadImage = (src) => {
   });
 };
 
-const NewDoctorCard = ({ id, image, name, speciality, designation, department, qualifications }) => {
+const NewDoctorCard = ({
+  id,
+  image,
+  name,
+  speciality,
+  designation,
+  department,
+  qualifications,
+}) => {
   const dispatch = useDispatch();
   const [tabValue, setTabValue] = useState("1");
   const [open, setOpen] = useState(false);
@@ -64,7 +78,7 @@ const NewDoctorCard = ({ id, image, name, speciality, designation, department, q
         <Card
           key={id}
           sx={{
-            width: '100%',
+            width: "100%",
             maxWidth: 500,
             mx: "auto",
             height: 400,
@@ -79,7 +93,6 @@ const NewDoctorCard = ({ id, image, name, speciality, designation, department, q
         >
           <Box display="flex" flexDirection="column" width="100%">
             <Box display="flex" width="100%" justifyContent="space-between">
-
               <Box
                 display="flex"
                 width="100px"
@@ -102,27 +115,30 @@ const NewDoctorCard = ({ id, image, name, speciality, designation, department, q
                     height: "100%",
                     boxShadow: "1px 1px 3px rgba(0, 0, 0, 0.2)",
                     objectFit: "cover",
-                    cursor: 'pointer',
-                    border:'5px lightgray solid'
+                    cursor: "pointer",
+                    border: "5px lightgray solid",
                   }}
                 />
               </Box>
 
               <Box display="flex" width="65%" flexDirection="column">
-                <Typography
-                  fontWeight="bold"
-                  variant="h6"
-                  fontSize={16}
-                  sx={{
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                  }}
-                >
-                  {name}
-                </Typography>
+                <Box display="flex">
+                  <Typography
+                    fontWeight="bold"
+                    variant="h6"
+                    fontSize={16}
+                    sx={{
+                      display: "-webkit-box",
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {name}
+                  </Typography>
+                  <ShareButton id={id}/>
+                </Box>
                 <Typography color="gray" noWrap fontSize={13}>
                   {designation || "Designation"}
                 </Typography>
@@ -133,7 +149,9 @@ const NewDoctorCard = ({ id, image, name, speciality, designation, department, q
                     sx={{
                       height: 2,
                       backgroundColor: "#ddd",
-                      "& .MuiLinearProgress-bar": { backgroundColor: HomeDoctorList },
+                      "& .MuiLinearProgress-bar": {
+                        backgroundColor: HomeDoctorList,
+                      },
                     }}
                   />
                 </Box>
@@ -143,29 +161,30 @@ const NewDoctorCard = ({ id, image, name, speciality, designation, department, q
                   </Typography>
 
                   <Link
-                    href={`/consultants/doctor_details`}
+                    href={`/consultants/doctor_details?id=${id}`}
                     passHref
                     scroll={true}
-
-                    onClick={() => {
-                      dispatch(setDoctorID(id));
-                    }}
+                    // onClick={() => {
+                    //   dispatch(setDoctorID(id));
+                    // }}
                   >
                     <Typography
                       color={HomeDoctorList}
                       noWrap
                       fontSize={13}
-
                       sx={{ display: "none", alignItems: "center" }}
                     >
-                      <FiberManualRecord sx={{ color: "lightgray", fontSize: "10px", marginX: 1 }} />
+                      <FiberManualRecord
+                        sx={{
+                          color: "lightgray",
+                          fontSize: "10px",
+                          marginX: 1,
+                        }}
+                      />
                       View Profile
                     </Typography>
                   </Link>
                 </Box>
-
-
-
               </Box>
             </Box>
             <div style={{ padding: "10px 0" }}>
@@ -191,23 +210,68 @@ const NewDoctorCard = ({ id, image, name, speciality, designation, department, q
                   textColor="inherit"
                   sx={{ minHeight: "0px" }}
                   TabIndicatorProps={{
-                    sx: { backgroundColor: HomeDoctorList, bottom: "1px", height: "2px" },
+                    sx: {
+                      backgroundColor: HomeDoctorList,
+                      bottom: "1px",
+                      height: "2px",
+                    },
                   }}
                 >
-                  <Tab label="Specialization and Expertise" value="1" sx={{ fontSize: "12px", px: 1, py: 0.5, textTransform: "none" }} />
-                  <Tab label="Qualification" value="2" sx={{ fontSize: "12px", px: 1, py: 0.5, textTransform: "none" }} />
+                  <Tab
+                    label="Specialization and Expertise"
+                    value="1"
+                    sx={{
+                      fontSize: "12px",
+                      px: 1,
+                      py: 0.5,
+                      textTransform: "none",
+                    }}
+                  />
+                  <Tab
+                    label="Qualification"
+                    value="2"
+                    sx={{
+                      fontSize: "12px",
+                      px: 1,
+                      py: 0.5,
+                      textTransform: "none",
+                    }}
+                  />
                 </TabList>
               </Box>
 
-              <TabPanel value="1" sx={{ display: "flex", width: "100%", padding: 0, margin: 0 }}>
-                <Grid container marginY={4} paddingX={1} justifyContent="space-between">
+              <TabPanel
+                value="1"
+                sx={{ display: "flex", width: "100%", padding: 0, margin: 0 }}
+              >
+                <Grid
+                  container
+                  marginY={4}
+                  paddingX={1}
+                  justifyContent="space-between"
+                >
                   {speciality
                     ?.split(";")
                     .map((item) => item.trim())
                     .map((item, index) => (
-                      <Grid item xs={12} key={index} display="flex" alignItems='center'>
-                        <TaskAlt sx={{ fontSize: 13, color: "gray", marginRight: "5px" }} />
-                        <Typography sx={{ color: "gray", lineHeight: 1.5 }} fontSize={13}>
+                      <Grid
+                        item
+                        xs={12}
+                        key={index}
+                        display="flex"
+                        alignItems="center"
+                      >
+                        <TaskAlt
+                          sx={{
+                            fontSize: 13,
+                            color: "gray",
+                            marginRight: "5px",
+                          }}
+                        />
+                        <Typography
+                          sx={{ color: "gray", lineHeight: 1.5 }}
+                          fontSize={13}
+                        >
                           {item}
                         </Typography>
                       </Grid>
@@ -215,15 +279,38 @@ const NewDoctorCard = ({ id, image, name, speciality, designation, department, q
                 </Grid>
               </TabPanel>
 
-              <TabPanel value="2" sx={{ display: "flex", width: "100%", padding: 0, margin: 0 }}>
-                <Grid container marginY={4} paddingX={1} justifyContent="space-between">
+              <TabPanel
+                value="2"
+                sx={{ display: "flex", width: "100%", padding: 0, margin: 0 }}
+              >
+                <Grid
+                  container
+                  marginY={4}
+                  paddingX={1}
+                  justifyContent="space-between"
+                >
                   {qualifications
                     ?.split(";")
                     .map((item) => item.trim())
                     .map((item, index) => (
-                      <Grid item xs={12} key={index} display="flex" alignItems='center'>
-                        <TaskAlt sx={{ fontSize: 13, color: "gray", marginRight: "5px" }} />
-                        <Typography sx={{ color: "gray", lineHeight: 1.5 }} fontSize={13}>
+                      <Grid
+                        item
+                        xs={12}
+                        key={index}
+                        display="flex"
+                        alignItems="center"
+                      >
+                        <TaskAlt
+                          sx={{
+                            fontSize: 13,
+                            color: "gray",
+                            marginRight: "5px",
+                          }}
+                        />
+                        <Typography
+                          sx={{ color: "gray", lineHeight: 1.5 }}
+                          fontSize={13}
+                        >
                           {item}
                         </Typography>
                       </Grid>
@@ -240,8 +327,8 @@ const NewDoctorCard = ({ id, image, name, speciality, designation, department, q
               // transform: "translateX(-50%)",
               width: "80%",
               // border:'1px black solid',
-              display: 'none',
-              justifyContent: 'center'
+              display: "none",
+              justifyContent: "center",
             }}
           >
             <Button
@@ -263,7 +350,8 @@ const NewDoctorCard = ({ id, image, name, speciality, designation, department, q
               Meet the Doctor
             </Button>
           </CardActions>
-        </Card></ScrollReveal>
+        </Card>
+      </ScrollReveal>
     </>
   );
 };
