@@ -18,13 +18,16 @@ import { useSelector } from 'react-redux';
 
 const AccomplishmentsMain = lazy(() => import("./Accomplishments/AccomplichmentsMain"));
 const Facilities = lazy(() => import("./Facilities/FacilityData"));
+const Facility2 = lazy(() => import("./Facilities/Facility2"));
 const OurHospitals = lazy(() => import("./Hospitals/OurHospitalsPage"));
+const OurHospitals2 = lazy(() => import("./Hospitals/OurHospitals"));
 const ImageSliderMain = lazy(() => import("./HomeImageSlider/ImageSliderMain"));
 
 const navItems = [
     { label: 'Introduction', to: 'Intro' },
     { label: 'Our Doctors', to: 'Doctors' },
     { label: 'Accomplishments', to: 'Accomp' },
+    { label: 'Facilities2', to: 'Facility' },
     { label: 'Facilities', to: 'Facilitie' },
     { label: 'Partners', to: 'Partners' },
     { label: 'Featured Stories', to: 'Featured' },
@@ -196,18 +199,38 @@ const ScrollNav = () => {
                     <Suspense fallback={<Loader />}><AccomplishmentsMain /></Suspense>
                 </Box>
 
-                <Element name="Facilitie">
+                {/* experimental facilities */ }
+
+                <Element name="Facility">
+                    <Box ref={el => sectionRefs.current['Facility'] = el} data-section="Facility" marginTop={5} display="flex" flexDirection="column" alignItems="center">
+                        <Box width="90%">
+                            <Typography variant="h5" fontWeight="bold" my={2}>Facilities 2</Typography>
+                        </Box>
+                    </Box>
+                </Element>
+
+                <Box marginBottom={5} display="flex" flexDirection="column" alignItems="center">
+                    <Box width="90%">
+                        <Facility2 />
+                    </Box>
+                </Box>
+
+                {/* experimental facilities 2 */ }
+
+                {/* <Element name="Facilitie">
                     <Box ref={el => sectionRefs.current['Facilitie'] = el} data-section="Facilitie" marginTop={5} display="flex" flexDirection="column" alignItems="center">
                         <Box width="90%">
                             <Typography variant="h5" fontWeight="bold" my={2}>Facilities</Typography>
                         </Box>
                     </Box>
                 </Element>
+
+
                 <Box marginBottom={5} display="flex" flexDirection="column" alignItems="center">
                     <Box width="90%">
                         <Facilities />
                     </Box>
-                </Box>
+                </Box> */}
 
                 <Element name="Partners">
                     <Box mt={5} display="flex" justifyContent="center" ref={el => sectionRefs.current['Partners'] = el} data-section="Partners">
@@ -249,7 +272,7 @@ const ScrollNav = () => {
                     </Box>
                 </Box>
 
-                <Element name="Network">
+                {/* <Element name="Network">
                     <Box ref={el => sectionRefs.current['Network'] = el} data-section="Network" mt={5} display="flex" justifyContent="center">
                         <Box width="90%">
                             <Typography variant="h5" fontWeight="bold" mb={3}>ACCF Network</Typography>
@@ -260,6 +283,26 @@ const ScrollNav = () => {
                 <Box display="flex" justifyContent="center">
                     <Box width="90%">
                         <Suspense fallback={<Loader />}><OurHospitals /></Suspense>
+                    </Box>
+                </Box> */}
+
+                <Element name="Network">
+                    <Box ref={el => sectionRefs.current['Network'] = el} data-section="Network" mt={5} display="flex" justifyContent="center">
+                        <Box width="90%">
+                            <Typography variant="h5" fontWeight="bold" mb={3}>ACCF Network 2</Typography>
+                            <Typography
+                                variant="body1"
+                                mb={3}
+                                sx={{ fontFamily: "Montserrat,Roboto,Helvetica,Arial,sans-serif" }}
+                            >
+                                Learn more about our hospital locations or choose a specific location.
+                            </Typography>
+                        </Box>
+                    </Box>
+                </Element>
+                <Box display="flex" justifyContent="center">
+                    <Box width="90%">
+                        <Suspense fallback={<Loader />}><OurHospitals2 /></Suspense>
                     </Box>
                 </Box>
             </Box>
