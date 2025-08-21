@@ -6,19 +6,26 @@ import { useSelector } from "react-redux";
 const OurHospitals2 = () => {
   const ourHospitals = useSelector(selectHospitals) || [];
   
+  const levelOrder = { L1: 1, L2: 2, L3: 3 };
+  const sortedHospitals = [...ourHospitals].sort((a, b) => {
+    const levelDiff = levelOrder[a.level] - levelOrder[b.level];
+    if (levelDiff !== 0) return levelDiff;
+    return a.name.localeCompare(b.name);
+  });
+
   return (
     <Box sx={{ px: { xs: 2, md: 6 }, py: { xs: 2, md: 4 }, background: "transparent" }}>
       
    
       <Grid container spacing={3}>
-        {ourHospitals.map((hospital) => (
+        {sortedHospitals.map((hospital) => (
           <Grid
             key={hospital.id}
             item
             xs={12}
             sm={6}
-            md={4}
-            lg={4}
+            md={3}
+            lg={3}
             sx={{
               display: "flex",
               justifyContent: "center",
@@ -54,29 +61,30 @@ const OurHospitals2 = () => {
                 <Box
                   sx={{
                     width: "100%",
-                    height: 160,
+                    height: "100%",
                     background: "#e3e3e3",
                     backgroundImage: hospital.about_bg
-                      ? `url(https://accf-api.cancercareinstituteguwahati.org/storage/${hospital.about_bg})`
+                      ? `url(https://accf-api.cancercareinstituteguwahati.org/storage/${hospital.img})`
                       : "url(/hospital-placeholder.jpg)",
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                   }}
                 />
-                <Box sx={{ p: 2, background: "rgba(86, 79, 79, 0.86)", position: "absolute", bottom: 0, left: 0, right: 0 }}>
+                <Box sx={{ p: 2, background: "linear-gradient(180deg, rgba(0, 0, 0, 0) 27.4%, rgba(0, 0, 0, .56) 58.85%, rgba(0, 0, 0, .8) 100%)", position: "absolute", bottom: 0, left: 0, right: 0 }}>
                   <Typography
                     variant="h6"
                     fontWeight={600}
+                    fontSize={{ xs: "1rem", md: "0.8rem" }}
                     color="#fff"
                   >
                     {hospital.name}
                   </Typography>
-                  <Typography
+                  {/* <Typography
                     variant="body2"
                     color="#fff"
                   >
-                    {hospital.city || hospital.address || ""}
-                  </Typography>
+                    {hospital.short_location || hospital.address || ""}
+                  </Typography> */}
                 </Box>
               </a>
             </Box>

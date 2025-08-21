@@ -1,18 +1,25 @@
 import { selectFacilities } from "@/redux/features/facilitiesSlice";
 import React from "react";
 import { useSelector } from "react-redux";
-import { Box, Grid, Typography, Link, useTheme, useMediaQuery, Paper } from "@mui/material";
+import { Box, Typography, Link, useTheme, useMediaQuery } from "@mui/material";
 
 const Facility2 = () => {
   const facility = useSelector(selectFacilities);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+  // Sort alphabetically
+  const sortedfacility = [...facility].sort((a, b) => a.name.localeCompare(b.name));
+  // Split into two columns
+  const mid = Math.ceil(sortedfacility.length / 2);
+  const leftColumn = sortedfacility.slice(0, mid);
+  const rightColumn = sortedfacility.slice(mid);
+
   return (
     <Box width="100%" display="flex" flexDirection={isMobile ? "column" : "row"}>
       <Box
         sx={{
-        //   width: isMobile ? "100%" : "33.33%",
+          width: isMobile ? "100%" : "33.33%",
           p: isMobile ? 2 : 4,
           background: "rgb(237, 224, 197)",
           display: "flex",
@@ -24,54 +31,57 @@ const Facility2 = () => {
           Featured care Areas
         </Typography>
         <Typography variant="body1" mt={1}>
-          We solve the world most serious and comples medical challanges
+          We solve the world most serious and complex medical challanges
         </Typography>
       </Box>
-      <Grid
-        container
-        className="care-areas"
+      <Box
         sx={{
-        //   width: isMobile ? "100%" : "66.66%",
+          width: isMobile ? "100%" : "66.66%",
           p: isMobile ? 2 : 4,
-          background: "#93c6da4f",
+          background: "#e3f2fd",
+          display: "flex",
+          flexDirection: isMobile ? "column" : "row",
+          gap: isMobile ? 0 : 4,
         }}
-        spacing={isMobile ? 2 : 0}
       >
-        {facility.map((fac) => (
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            key={fac.id}
-            sx={{
-              boxSizing: "border-box",
-              pr: isMobile ? 0 : 4,
-            }}
-          >
-            <Link
-              href={`/facilities?expand=true#${fac.id}`}
-              underline="none"
-              sx={{
-                color: "rgb(7, 115, 216)",
-                display: "block",
-                borderTop: "1px solid #0005",
-                py: 2.5,
-              }}
-              className="care-area-link"
-            >
+        {[leftColumn, rightColumn].map((column, idx) => (
+          <Box key={idx} sx={{ flex: 1, display: "flex", flexDirection: "column" }}>
+            {column.map((fac) => (
               <Box
-                className="care-area-content"
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
+                key={fac.id}
+                sx={{
+                  borderBottom: "1px solid #b0bec5",
+                  py: 2.5,
+                  px: 2,
+                  background: "#e3f2fd",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  transition: "background 0.2s",
+                  "&:hover": { background: "#bbdefb" },
+                }}
               >
-                <Typography>{fac.name}</Typography>
-                <Typography>&#9654;</Typography>
+                <Link
+                  href={`/facilities?expand=true#${fac.id}`}
+                  underline="none"
+                  sx={{
+                    color: "rgb(7, 115, 216)",
+                    fontWeight: 500,
+                    fontSize: "1.1rem",
+                    flex: 1,
+                  }}
+                  className="care-area-link"
+                >
+                  {fac.name}
+                </Link>
+                <Typography sx={{ color: "rgb(7, 115, 216)", fontSize: "1.3rem", ml: 2 }}>
+                  &#9654;
+                </Typography>
               </Box>
-            </Link>
-          </Grid>
+            ))}
+          </Box>
         ))}
-      </Grid>
+      </Box>
     </Box>
   );
 };

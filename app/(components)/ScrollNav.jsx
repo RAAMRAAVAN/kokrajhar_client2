@@ -204,7 +204,7 @@ const ScrollNav = () => {
                 <Element name="Facility">
                     <Box ref={el => sectionRefs.current['Facility'] = el} data-section="Facility" marginTop={5} display="flex" flexDirection="column" alignItems="center">
                         <Box width="90%">
-                            <Typography variant="h5" fontWeight="bold" my={2}>Facilities 2</Typography>
+                            <Typography variant="h5" fontWeight="bold" my={2}>Facilities</Typography>
                         </Box>
                     </Box>
                 </Element>
@@ -289,13 +289,13 @@ const ScrollNav = () => {
                 <Element name="Network">
                     <Box ref={el => sectionRefs.current['Network'] = el} data-section="Network" mt={5} display="flex" justifyContent="center">
                         <Box width="90%">
-                            <Typography variant="h5" fontWeight="bold" mb={3}>ACCF Network 2</Typography>
+                            <Typography variant="h5" fontWeight="bold" mb={3}>ACCF Network</Typography>
                             <Typography
                                 variant="body1"
                                 mb={3}
                                 sx={{ fontFamily: "Montserrat,Roboto,Helvetica,Arial,sans-serif" }}
                             >
-                                Learn more about our hospital locations or choose a specific location.
+                                Learn more about ACCF Hospital locations.
                             </Typography>
                         </Box>
                     </Box>
