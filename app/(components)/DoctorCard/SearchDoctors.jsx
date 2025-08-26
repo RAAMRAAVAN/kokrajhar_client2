@@ -297,7 +297,7 @@ const SearchDoctors = ({ doctors }) => {
                 }}
                 onChange={(event, newValue) => {
                     dispatch(setDoctorID(newValue.id));
-                    router.push('/consultants/doctor_details');
+                    router.push(`/consultants/doctor_details?id=${newValue.id}`);
                     setOpen(false);
                     
                 }}

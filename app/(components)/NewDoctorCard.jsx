@@ -164,6 +164,7 @@ const NewDoctorCard = ({
                     href={`/consultants/doctor_details?id=${id}`}
                     passHref
                     scroll={true}
+                    style={{visibility:'hidden', position:'absolute'}}
                     // onClick={() => {
                     //   dispatch(setDoctorID(id));
                     // }}
@@ -172,7 +173,7 @@ const NewDoctorCard = ({
                       color={HomeDoctorList}
                       noWrap
                       fontSize={13}
-                      sx={{ display: "none", alignItems: "center" }}
+                      sx={{ alignItems: "center" }}
                     >
                       <FiberManualRecord
                         sx={{

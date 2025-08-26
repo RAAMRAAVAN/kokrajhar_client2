@@ -2,10 +2,12 @@ import { selectFacilities } from "@/redux/features/facilitiesSlice";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Box, Typography, Link, useTheme, useMediaQuery } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 const Facility2 = () => {
   const facility = useSelector(selectFacilities);
   const theme = useTheme();
+  const router = useRouter();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   // Sort alphabetically
@@ -61,19 +63,22 @@ const Facility2 = () => {
                   "&:hover": { background: "#bbdefb" },
                 }}
               >
-                <Link
-                  href={`/facilities?expand=true#${fac.id}`}
+                <Box
+                  // href={`/facilities?expand=true#${fac.id}`}
+                  // onClick={() => router.push(`/facilities?expand=true#${fac.id}`)}
+                  onClick={() => router.push(`/facilities?expand=true#${fac.id}`)}
                   underline="none"
                   sx={{
                     color: "rgb(7, 115, 216)",
                     fontWeight: 500,
                     fontSize: "1.1rem",
                     flex: 1,
+                    cursor:'pointer'
                   }}
                   className="care-area-link"
                 >
                   {fac.name}
-                </Link>
+                </Box>
                 <Typography sx={{ color: "rgb(7, 115, 216)", fontSize: "1.3rem", ml: 2 }}>
                   &#9654;
                 </Typography>

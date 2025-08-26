@@ -23,6 +23,7 @@ export default function ShareModalButton({ id }) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const shareUrl = hospital.domain + "consultants/doctor_details?id=" + id;
+  // const shareUrl = "http://localhost:3000/"+"consultants/doctor_details?id=" + id;
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
