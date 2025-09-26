@@ -41,6 +41,10 @@
 .specialityCard:hover .aButton{
     color: #fff;
 }
+
+.specialityCard:hover .icon{
+    filter:drop-shadow(0 0 0.75rem #4b4646);
+}
  
 .icon{
     font-family: Montserrat,sans-serif;
@@ -51,6 +55,7 @@
     box-sizing: border-box;
     margin: 0 auto 20px auto;
     width: 62px;
+    filter: grayscale(50%);
 }
 
 .textCenter{

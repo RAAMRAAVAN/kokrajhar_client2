@@ -13,7 +13,7 @@ const deps = [
   },
   {
     title: "Radiation Oncology",
-    icon: '/dep-icons/atom.png',
+    icon: '/dep-icons/radiation.png',
   },
   {
     title: "Pathology",
@@ -25,7 +25,7 @@ const deps = [
   },
   {
     title: "Radiology",
-    icon: '/dep-icons/anesthesiology.png',
+    icon: '/dep-icons/radiology.png',
     iconHover: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="black" stroke="black" stroke-width="2"><rect x="16" y="12" width="32" height="40" rx="2"/><circle cx="32" cy="32" r="6"/></svg>`
   },
   
@@ -35,7 +35,7 @@ const deps = [
   },
   {
     title: "Head and Neck Oncology",
-    icon: '/dep-icons/injection.png',
+    icon: '/dep-icons/neck.png',
   },
   {
     title: "Medical Oncology",
