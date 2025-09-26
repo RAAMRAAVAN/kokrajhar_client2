@@ -19,6 +19,7 @@ import { useSelector } from 'react-redux';
 const AccomplishmentsMain = lazy(() => import("./Accomplishments/AccomplichmentsMain"));
 const Facilities = lazy(() => import("./Facilities/FacilityData"));
 const Facility2 = lazy(() => import("./Facilities/Facility2"));
+const Department = lazy(() => import("./Department/Department"));
 const OurHospitals = lazy(() => import("./Hospitals/OurHospitalsPage"));
 const OurHospitals2 = lazy(() => import("./Hospitals/OurHospitals"));
 const ImageSliderMain = lazy(() => import("./HomeImageSlider/ImageSliderMain"));
@@ -27,8 +28,9 @@ const navItems = [
     { label: 'Introduction', to: 'Intro' },
     { label: 'Our Doctors', to: 'Doctors' },
     { label: 'Accomplishments', to: 'Accomp' },
-    { label: 'Facilities2', to: 'Facility' },
-    { label: 'Facilities', to: 'Facilitie' },
+    { label: 'Department', to: 'Department' },
+    { label: 'Facilities', to: 'Facility' },
+    // { label: 'Facilities', to: 'Facilitie' },
     { label: 'Partners', to: 'Partners' },
     { label: 'Featured Stories', to: 'Featured' },
     { label: 'Our Stories', to: 'Stories' },
@@ -199,7 +201,20 @@ const ScrollNav = () => {
                     <Suspense fallback={<Loader />}><AccomplishmentsMain /></Suspense>
                 </Box>
 
-                {/* experimental facilities */ }
+                <Element name="Department">
+                    <Box mt={5} display="flex" justifyContent="center" ref={el => sectionRefs.current['Department'] = el} data-section="Department">
+                        <Box width="90%">
+                            <ScrollReveal animation="grow">
+                                <Typography variant="h5" fontWeight="bold" mb={3} >Our Department</Typography>
+                            </ScrollReveal>
+                        </Box>
+                    </Box>
+                </Element>
+                <Box marginBottom={5} display="flex" flexDirection="column" alignItems="center">
+                    <Box width="90%">
+                        <Department />
+                    </Box>
+                </Box>
 
                 <Element name="Facility">
                     <Box ref={el => sectionRefs.current['Facility'] = el} data-section="Facility" marginTop={5} display="flex" flexDirection="column" alignItems="center">
@@ -215,22 +230,7 @@ const ScrollNav = () => {
                     </Box>
                 </Box>
 
-                {/* experimental facilities 2 */ }
-
-                {/* <Element name="Facilitie">
-                    <Box ref={el => sectionRefs.current['Facilitie'] = el} data-section="Facilitie" marginTop={5} display="flex" flexDirection="column" alignItems="center">
-                        <Box width="90%">
-                            <Typography variant="h5" fontWeight="bold" my={2}>Facilities</Typography>
-                        </Box>
-                    </Box>
-                </Element>
-
-
-                <Box marginBottom={5} display="flex" flexDirection="column" alignItems="center">
-                    <Box width="90%">
-                        <Facilities />
-                    </Box>
-                </Box> */}
+                
 
                 <Element name="Partners">
                     <Box mt={5} display="flex" justifyContent="center" ref={el => sectionRefs.current['Partners'] = el} data-section="Partners">

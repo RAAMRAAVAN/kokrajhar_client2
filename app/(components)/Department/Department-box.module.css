@@ -1,0 +1,125 @@
+:root {
+    --primary: #F04E30;
+    --text: #58595B;
+    --light-text: #454545;
+    --black: #000000;
+    --white: #FFFFFF;
+    --bg-back: #F6F6F6;
+}
+
+.Box{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+/* styles for card-holder class */
+.cardHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    background: transparent;
+    padding: 20px 10px;
+
+}
+
+.specialityCard {
+    font-family: Montserrat,sans-serif;
+    color: #58595b;
+    -webkit-text-size-adjust: none;
+    font-size: 12px;
+    visibility: visible;
+    box-sizing: border-box;
+    box-shadow: 0 4px 19px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    background: url('https://www.medanta.org/assets/images/icons/pattern-bg.png') repeat top left;
+    height: 100%;
+    padding: 20px;
+    width:100%;
+}
+
+.specialityCard:not(.nohover):hover {
+    background: url(https://www.medanta.org/assets/images/icons/pattern-bgwhite.png) repeat top left var(--primary);
+}
+
+.specialityCard:hover .sTitle{
+    color: #fff;
+}
+
+.specialityCard:hover .aButton{
+    color: #fff;
+}
+ 
+.icon{
+    font-family: Montserrat,sans-serif;
+    color: #58595b;
+    -webkit-text-size-adjust: none;
+    font-size: 12px;
+    visibility: visible;
+    box-sizing: border-box;
+    margin: 0 auto 20px auto;
+    width: 62px;
+}
+
+.textCenter{
+    font-family: Montserrat,sans-serif;
+    color: #58595b;
+    -webkit-text-size-adjust: none;
+    font-size: 12px;
+    visibility: visible;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.iconDefault{
+    font-family: Montserrat,sans-serif;
+    color: #58595b;
+    -webkit-text-size-adjust: none;
+    font-size: 12px;
+    visibility: visible;
+    box-sizing: border-box;
+}
+
+.iconHover{
+    font-family: Montserrat,sans-serif;
+    color: #58595b;
+    -webkit-text-size-adjust: none;
+    font-size: 12px;
+    visibility: visible;
+    box-sizing: border-box;
+    display: none;
+}
+
+.sTitle{
+    font-family: Montserrat,sans-serif;
+    -webkit-text-size-adjust: none;
+    visibility: visible;
+    text-align: center;
+    box-sizing: border-box;
+    font-weight: 700!important;
+    width: 250px;
+    max-width: 100%;
+    margin: auto;
+    color: #454545;
+    margin-bottom: 15px;
+    font-size: 12px;
+}
+
+
+
+.aButton{
+    font-family: Montserrat,sans-serif;
+    -webkit-text-size-adjust: none;
+    visibility: visible;
+    text-align: center;
+    box-sizing: border-box;
+    text-decoration: none;
+    align-items: center;
+    color: var(--text);
+    font-weight: 600;
+    display: inline-flex;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 12px;
+}
