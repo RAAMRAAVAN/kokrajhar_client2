@@ -1,12 +1,3 @@
-:root {
-    --primary: #F04E30;
-    --text: #58595B;
-    --light-text: #454545;
-    --black: #000000;
-    --white: #FFFFFF;
-    --bg-back: #F6F6F6;
-}
-
 .Box{
     display: flex;
     width: 100%;
@@ -40,7 +31,7 @@
 }
 
 .specialityCard:not(.nohover):hover {
-    background: url(https://www.medanta.org/assets/images/icons/pattern-bgwhite.png) repeat top left var(--primary);
+    background: url(https://www.medanta.org/assets/images/icons/pattern-bgwhite.png) repeat top left #F04E30;
 }
 
 .specialityCard:hover .sTitle{
@@ -116,7 +107,7 @@
     box-sizing: border-box;
     text-decoration: none;
     align-items: center;
-    color: var(--text);
+    color: #58595B;
     font-weight: 600;
     display: inline-flex;
     gap: 10px;
