@@ -140,6 +140,7 @@ const Header = () => {
                         >
                             FOR QUERY & APPOINTMENT, CALL 18003454325
                         </Typography>
+                        <Typography fontSize={12} color={color1} textAlign='end'>(9:00 AM to 5:00 PM IST, Monday to Saturday)</Typography>
                         <Box
                             sx={{
                                 display: "flex",
