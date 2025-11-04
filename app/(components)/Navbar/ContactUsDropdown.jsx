@@ -49,7 +49,7 @@ const ContactUsDropdown = ({item, selectedPage, setSelectedPage}) => {
               href={HospitalDetails.phone} sx={{ cursor: "pointer" }} color="#454545" marginLeft={1}>{HospitalDetails.phone}</Typography>
             
           </Box>
-          {HospitalDetails.phone === '18003454325'?<Typography fontSize={8} color="red" textAlign='center'>(9:00 AM to 5:00 PM IST, Monday to Saturday)</Typography>:<></>}
+          {/* {HospitalDetails.phone === '18003454325'?<Typography fontSize={8} color="red" textAlign='center'>(9:00 AM to 5:00 PM IST, Monday to Saturday)</Typography>:<></>} */}
         </Box> : <></>}
         {HospitalDetails.whatsapp !== null ? <Box padding={1} sx={{ cursor: 'pointer', borderTop: '1px lightgray solid', '&:hover': { backgroundColor: 'lightgray', display: 'flex', width: '100%' } }}>
           <Box onClick={() => setOpen(false)} display='flex'><BsWhatsapp size={23} color="gray" />
