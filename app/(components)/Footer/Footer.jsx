@@ -131,46 +131,79 @@ const Footer = () => {
             Contact Us
           </Typography>
           {hospitalData.phone2 !== null ? (
-            <Typography
-              color="gray"
-              fontSize="14px"
-              display="flex"
-              alignItems="center"
-              mb={1}
-              component="a"
-              href={`tel:${hospitalData.phone2}`}
-              sx={{
-                textDecoration: "none",
-                cursor: "pointer",
-                "&:hover": { color: "black" },
-              }}
-            >
-              <Phone sx={{ color: "gray", mr: 1 }} /> {hospitalData.phone2}
-            </Typography>
+            <>
+              <Typography
+                color="gray"
+                fontSize="14px"
+                display="flex"
+                alignItems="center"
+                mb={1}
+                component="a"
+                href={`tel:${hospitalData.phone2}`}
+                sx={{
+                  textDecoration: "none",
+                  cursor: "pointer",
+                  "&:hover": { color: "black" },
+                }}
+              >
+                <Phone sx={{ color: "gray", mr: 1 }} /> {hospitalData.phone2}
+              </Typography>
+
+              {hospitalData.phone2 === "18003454325" ? (
+                <Typography fontSize={10} color="red">
+                  (9:00 AM to 5:00 PM IST, Monday to Saturday)
+                </Typography>
+              ) : (
+                <></>
+              )}
+            </>
           ) : (
             <></>
           )}
+          <Box
+            display="flex"
+            width="100%"
+            borderTop="1px lightgray solid"
+            marginBottom={1}
+          ></Box>
           {hospitalData.phone !== null ? (
-            <Typography
-              color="gray"
-              fontSize="14px"
-              display="flex"
-              alignItems="center"
-              mb={1}
-              component="a"
-              href={`tel:${hospitalData.phone || ""}`}
-              sx={{
-                textDecoration: "none",
-                cursor: "pointer",
-                "&:hover": { color: "black" },
-              }}
-            >
-              <Phone sx={{ color: "gray", mr: 1 }} />{" "}
-              {hospitalData.phone || "Not Available"}
-            </Typography>
+            <>
+              <Typography
+                color="gray"
+                fontSize="14px"
+                display="flex"
+                alignItems="center"
+                mb={1}
+                component="a"
+                href={`tel:${hospitalData.phone || ""}`}
+                sx={{
+                  textDecoration: "none",
+                  cursor: "pointer",
+                  "&:hover": { color: "black" },
+                }}
+              >
+                <Phone sx={{ color: "gray", mr: 1 }} />{" "}
+                {hospitalData.phone || "Not Available"}
+              </Typography>
+
+              {hospitalData.phone === "18003454325" ? (
+                <Typography fontSize={10} color="red">
+                  (9:00 AM to 5:00 PM IST, Monday to Saturday)
+                </Typography>
+              ) : (
+                <></>
+              )}
+            </>
           ) : (
             <></>
           )}
+          <Box
+            display="flex"
+            width="100%"
+            borderTop="1px lightgray solid"
+            marginBottom={1}
+          ></Box>
+
           {hospitalData.whatsapp !== null ? (
             <Typography
               color="gray"

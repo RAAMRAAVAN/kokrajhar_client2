@@ -35,18 +35,21 @@ const ContactUsDropdown = ({item, selectedPage, setSelectedPage}) => {
             <Box display='flex' onClick={() => { setSelectedPage(item.link) }}><RiContactsLine size={24} color="gray" /><Typography color="#454545" marginLeft={1}>Contact Us</Typography></Box>
           </Link>
         </Box>
-        {HospitalDetails.phone2 !== null ? <Box padding={1} sx={{ cursor: 'pointer', borderTop: '1px lightgray solid', '&:hover': { backgroundColor: 'lightgray', display: 'flex', width: '100%' } }}>
+        {HospitalDetails.phone2 !== null ? <Box padding={1} sx={{ cursor: 'pointer', borderTop: '1px lightgray solid', '&:hover': { backgroundColor: 'lightgray'} }}>
           <Box onClick={() => setOpen(false)} display='flex'><IoIosCall size={25} color="gray" />
             <Typography component="a"
               href={`tel:${HospitalDetails.phone2 || ""}`} sx={{ cursor: "pointer" }} color="#454545" marginLeft={1}>{HospitalDetails.phone2}</Typography>
           </Box>
+          {HospitalDetails.phone2 === '18003454325'?<Typography fontSize={8} color="red" textAlign='center'>(9:00 AM to 5:00 PM IST, Monday to Saturday)</Typography>:<></>}
         </Box> : <></>}
 
-        {HospitalDetails.phone !== null ? <Box padding={1} sx={{ cursor: 'pointer', borderTop: '1px lightgray solid', '&:hover': { backgroundColor: 'lightgray', display: 'flex', width: '100%' } }}>
+        {HospitalDetails.phone !== null ? <Box padding={1} sx={{ cursor: 'pointer', borderTop: '1px lightgray solid', '&:hover': { backgroundColor: 'lightgray'} }}>
           <Box onClick={() => setOpen(false)} display='flex'><IoIosCall size={25} color="gray" />
             <Typography component="a"
               href={HospitalDetails.phone} sx={{ cursor: "pointer" }} color="#454545" marginLeft={1}>{HospitalDetails.phone}</Typography>
+            
           </Box>
+          {/* {HospitalDetails.phone === '18003454325'?<Typography fontSize={8} color="red" textAlign='center'>(9:00 AM to 5:00 PM IST, Monday to Saturday)</Typography>:<></>} */}
         </Box> : <></>}
         {HospitalDetails.whatsapp !== null ? <Box padding={1} sx={{ cursor: 'pointer', borderTop: '1px lightgray solid', '&:hover': { backgroundColor: 'lightgray', display: 'flex', width: '100%' } }}>
           <Box onClick={() => setOpen(false)} display='flex'><BsWhatsapp size={23} color="gray" />
