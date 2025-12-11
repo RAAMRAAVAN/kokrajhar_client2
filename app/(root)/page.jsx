@@ -33,12 +33,10 @@ const Home = () => {
   const [updates, setUpdates] = useState([]);
 
   const fetchVideos = async () => {
-    // console.log("fetch videos")
     setVideos(await LatestVideos2())
   }
 
   const fetchUpdates = async () => {
-    // console.log("fetch videos")
     setUpdates(await FetchUpdates())
   }
   useEffect(() => {

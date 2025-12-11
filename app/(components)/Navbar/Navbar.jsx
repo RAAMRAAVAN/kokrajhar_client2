@@ -39,7 +39,6 @@ export default function Navbar({ setMobileOpen, mobileOpen }) {
   const HospitalDetails = useSelector(selectHospitalDetails);
   const Facilities = useSelector(selectFacilities);
   const handleDrawerToggle = () => setMobileOpen((prev) => !prev);
-  console.log("selected page=", selectedPage);
   useEffect(() => {
     setSelectedPage(pathname);
     setHydrated(true);

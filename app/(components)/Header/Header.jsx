@@ -18,7 +18,6 @@ const Header = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [open, setOpen] = useState(false);
     const [hydrated, setHydrated] = useState(false);
-    // console.log("logo=", `https://accf-api.cancercareinstituteguwahati.org/storage/${removeBackslashes(HospitalDetails.logo_primary)}`)
     const handleScrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };

@@ -5,7 +5,6 @@ import { Box, Grid } from "@mui/material";
 import NewDoctorCard from '../../(components)/NewDoctorCard';
 const DisplayDoctors = ({ department }) => {
     const doctors = useSelector(selectDoctors);
-    console.log("dept=", department);
     return (<>
         <Grid container width='90%'>
             {department !== null ? <>

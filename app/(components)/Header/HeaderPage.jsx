@@ -1,6 +1,6 @@
 'use client'
 import Header from './Header'
-import { fetchDoctors2, FetchFacilitiesData2, FetchHospitalDetails, FetchHospitalsData2, fetchNewsAndEvents2 } from "@/lib/fetchData";
+import { FetchDepertments2, fetchDoctors2, FetchFacilitiesData2, FetchHospitalDetails, FetchHospitalsData2, fetchNewsAndEvents2 } from "@/lib/fetchData";
 import { setDoctors } from "@/redux/features/doctorSlice";
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -8,6 +8,7 @@ import { setNewses } from '@/redux/features/newsSlice';
 import { setHospitalDetails } from '@/redux/features/hospitalDetailSlice';
 import { setHospitals } from '@/redux/features/hospitalSlice';
 import { setFacilities } from '@/redux/features/facilitiesSlice';
+import { setDepertments } from '@/redux/features/depertmentSlice';
 
 const HeaderPage = () => {
     const dispatch = useDispatch();
@@ -15,7 +16,6 @@ const HeaderPage = () => {
         // setLoading1(true);
         try {
             const data = await fetchDoctors2();
-            // console.log("API=", data, data?.length);
             if(data?.length)
                 {dispatch(setDoctors(data));}
         } catch (error) {
@@ -77,6 +77,20 @@ const HeaderPage = () => {
         }
     };
     // FetchFacilitiesData2
+
+    const fetchDepertments = async () => {
+        // setLoading2(true);
+        try {
+            const data = await FetchDepertments2();
+            // if(data?.leng)
+                dispatch(setDepertments(data))
+        } catch (error) {
+            console.error("Error fetching depertment data:", error);
+        } finally {
+            // setLoading2(false);
+        }
+    };
+    // fetching depertment data from api
     
     useEffect(() => {
         fetchDoctorDetails();
@@ -84,9 +98,9 @@ const HeaderPage = () => {
         fetchHospitalDetails();
         fetchHospitals();
         fetchFacilities();
+        fetchDepertments();
     }, []);
 
-    // console.log("Client API's", Doctors, news);
 
     return (<>
     <Header/>

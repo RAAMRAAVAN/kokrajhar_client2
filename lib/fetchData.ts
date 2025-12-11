@@ -8,7 +8,7 @@ export const ContactUsAccess = true;
 export const AcademicsAccess = false;
 export const SocialInfraAccess = false;
 export const UpdatesAccess = true;
-export const HospitalID: number = 1;
+export const HospitalID: number = 9;
 export const VideosAccess = true;
 
 export const StaticHospital = () => {
@@ -297,6 +297,28 @@ export async function FetchUpdates() {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
   try {
     const response = await fetch(`https://accf-api.cancercareinstituteguwahati.org/api/get-updates-for-center`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ "hospitalId": HospitalID }),
+      next: { revalidate: 900 },
+      // cache: "no-store",
+    });
+
+    const data = await response.json();
+    // console.log('Trying to fetch news from barpeta server :', data);
+    return data || [];
+  } catch (error) {
+    console.error("Failed to fetch doctors:", error);
+    return [];
+  }
+}
+
+export async function FetchDepertments2() {
+  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+  try {
+    const response = await fetch(`https://accf-api.cancercareinstituteguwahati.org/api/get-departments-for-center`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

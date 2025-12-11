@@ -114,7 +114,6 @@ const VideoGrid = ({ LatestVideosData }) => {
     setCustomArray(Array.from({ length: size }).map((_, index) => value * (index + 1)));
   }, [size]);
 
-  console.log("custom array=", custom_array);
 
   if (LatestVideosData.length > 0)
     return (

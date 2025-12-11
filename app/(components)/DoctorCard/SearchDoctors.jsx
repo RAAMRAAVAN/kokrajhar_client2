@@ -35,7 +35,6 @@ const CustomPopper = ({
     ...other
 }) => {
 
-    // console.log("departments=", uniqueDepartments);
     const router = useRouter();
     const dispatch = useDispatch();
 
@@ -227,7 +226,6 @@ const SearchDoctors = ({ doctors }) => {
             doc.depertment !== 'Hospital Administration'
         ))
     }
-    // console.log("filtered=", filteredDoctors);
 
     const wrapperRef = useRef();
 
@@ -241,7 +239,6 @@ const SearchDoctors = ({ doctors }) => {
                     .map(doc => doc.depertment)
                     .filter(dep => dep && dep.toLowerCase() !== 'hospital administration') // removes undefined/null/empty strings
             )];
-            //   console.log("working data", uniqueDepartments)
             setDepartments(uniqueDepartments);
         }
     }, [doctors]);
@@ -282,7 +279,7 @@ const SearchDoctors = ({ doctors }) => {
         <Box ref={wrapperRef} display="flex" width="100%" flexDirection="column" position="relative" >
             <Autocomplete
                 options={filteredDoctors}
-                disableCloseOnBlur
+                // disableCloseOnBlur
                 disableCloseOnSelect
                 getOptionLabel={(option) => option.name || ''}
                 freeSolo

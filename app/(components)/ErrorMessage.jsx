@@ -4,7 +4,6 @@ import { useEffect } from "react";
 
 const ErrorMessage = ({ type, openError, setOpenError, message = "This is a filled error Alert." }) => {
 
-    // console.log("error message", type, openError,  message)
     useEffect(() => {
         if (openError) {
             const timer = setTimeout(() => {

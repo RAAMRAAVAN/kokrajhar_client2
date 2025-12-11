@@ -32,7 +32,6 @@ function formatDateToReadable(dateStr) {
 const Facilities = ({ expand, FID }) => {
   const facilities = useSelector(selectFacilities);
   const News = useSelector(selectNewses);
-  // console.log("expand=", expand);
   const isMd = useMediaQuery('(min-width: 768px)');
   useEffect(() => {
     if (typeof window !== "undefined") {

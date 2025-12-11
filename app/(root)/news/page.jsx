@@ -11,7 +11,6 @@ const page = () => {
     const [LatestVideosData, setVideos] = useState([]);
 
     const fetchVideos = async () => {
-        console.log("fetch videos")
         setVideos(await LatestVideos2())
     }
     useEffect(() => {

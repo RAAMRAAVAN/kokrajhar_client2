@@ -48,16 +48,16 @@ const ScrollNav = () => {
     const isMobile = useMediaQuery('(max-width:900px)');
 
     // Fetch on-demand section data
-    const fetchSectionData = useCallback(async (sectionId) => {
-        if (fetchedSections[sectionId]) return;
-        try {
-            const res = await fetch(`/api/data/${sectionId}`);
-            await res.json(); // Assuming this is used elsewhere
-            setFetchedSections(prev => ({ ...prev, [sectionId]: true }));
-        } catch (err) {
-            console.error('Fetch error:', err);
-        }
-    }, [fetchedSections]);
+    // const fetchSectionData = useCallback(async (sectionId) => {
+    //     if (fetchedSections[sectionId]) return;
+    //     try {
+    //         const res = await fetch(`/api/data/${sectionId}`);
+    //         await res.json(); // Assuming this is used elsewhere
+    //         setFetchedSections(prev => ({ ...prev, [sectionId]: true }));
+    //     } catch (err) {
+    //         console.error('Fetch error:', err);
+    //     }
+    // }, [fetchedSections]);
 
     // Fetch videos only when user scrolls to "Stories"
     const fetchVideosIfNeeded = useCallback(() => {
@@ -78,9 +78,9 @@ const ScrollNav = () => {
                     if (entry.isIntersecting && sectionId) {
                         const index = navItems.findIndex(item => item.to === sectionId);
                         setSelected(index);
-                        if (!fetchedSections[sectionId]) {
-                            fetchSectionData(sectionId);
-                        }
+                        // if (!fetchedSections[sectionId]) {
+                        //     fetchSectionData(sectionId);
+                        // }
                     }
                 }
             },
@@ -100,7 +100,7 @@ const ScrollNav = () => {
             cancelIdleCallback(id);
             observer.disconnect();
         };
-    }, [fetchSectionData, fetchedSections]);
+    }, [fetchedSections]);
 
     useEffect(() => {
         if (isMobile && navRefs.current[selected]) {
@@ -134,17 +134,18 @@ const ScrollNav = () => {
                     {navItems.map((item, index) => (
                         <Box key={item.to} display="flex" alignItems="center" sx={{ flexShrink: 0 }} ref={el => navRefs.current[index] = el}>
                             <ScrollLink to={item.to} smooth duration={500} offset={-80}>
-                                <Link
-                                    underline="none"
+                                <Typography
+                                    component="span"
                                     sx={{
                                         fontSize: '12px',
                                         cursor: 'pointer',
                                         color: selected === index ? color1 : '#B0B0B0',
                                         fontWeight: 'bold',
+                                        display: 'inline-block'
                                     }}
                                 >
                                     {item.label}
-                                </Link>
+                                </Typography>
                             </ScrollLink>
                             {index < navItems.length - 1 && (
                                 <Typography sx={{
