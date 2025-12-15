@@ -1,7 +1,12 @@
 import React from "react";
 import styles from "./Department-box.module.css";
+import { useRouter } from "next/navigation";
 
 const DepartmentBox = (el) => {
+  
+  const router = useRouter();
+  
+
   return (
     <div className={styles.cardHolder}>
       <div className={styles.specialityCard}>
@@ -27,9 +32,9 @@ const DepartmentBox = (el) => {
         </div>
         <div className={styles.textCenter}>
           <div className={styles.sTitle}>
-            <a href="#">{el.dep.title}</a>
+            {el.dep.name}
           </div>
-          <a href="#" className={styles.aButton}>
+          <a onClick={() => router.push(`/depertment?id=${el.dep.id}`)} className={styles.aButton}>
             Know More <span></span>
           </a>
         </div>

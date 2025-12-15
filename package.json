@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "export": "next export",
     "start": "next start",
     "lint": "next lint",
-    "export": "next export"
+    "build:export": "npm run build && npm run export"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
