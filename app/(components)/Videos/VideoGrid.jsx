@@ -135,7 +135,8 @@ const VideoGrid = ({ LatestVideosData }) => {
         </Box> : <></>}
         <Grid container spacing={3}>
           {custom_array.map((value, index) => {
-            return (<>
+            return (
+            <>
               <Grid item md={3} xs={12} container spacing={1}>
                 <Grid item xs={12}>
                   <ScrollReveal animation="grow" timeout={1000}><VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={0 + index * 5} /></ScrollReveal>
@@ -157,7 +158,8 @@ const VideoGrid = ({ LatestVideosData }) => {
                   <ScrollReveal animation="grow" timeout={1000}><VideoCard LatestVideosData={LatestVideosData} setOpen={setOpen} setSelectedVideo={setSelectedVideo} id={3 + index * 5} /></ScrollReveal>
                 </Grid>
               </Grid>
-            </>)
+            </>
+            )
           })}
         </Grid>
       </Box>

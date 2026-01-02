@@ -8,8 +8,9 @@ export const ContactUsAccess = true;
 export const AcademicsAccess = false;
 export const SocialInfraAccess = false;
 export const UpdatesAccess = true;
-export const HospitalID: number = 9;
+export const HospitalID: number = 1;
 export const VideosAccess = true;
+export const AppointmentAccess = true;
 
 export const StaticHospital = () => {
   switch (HospitalID) {

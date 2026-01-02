@@ -1,11 +1,27 @@
 "use client"
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { selectDepertments } from "@/redux/features/depertmentSlice";
+import { selectDoctors } from '@/redux/features/doctorSlice';
+import NewDoctorCard from '@/app/(components)/NewDoctorCard';
+import Overview from '../consultants/doctor_details/Overview';
 
 export default function DepertmentClient({ depertment }) {
   const depertments = useSelector(selectDepertments) || [];
+  const doctors = useSelector(selectDoctors);
+
+  const [departmentDoctors, setDepartmentDoctors] = useState([]);
+
+  useEffect(() => {
+
+    if (!doctors?.length || !depertmentData?.name) return;
+
+    const filteredDoctors = doctors.filter(
+      (doctor) => doctor.depertment === depertmentData.name
+    );
+    setDepartmentDoctors(filteredDoctors);
+  }, []);
 
   // Handle undefined or null depertment
   if (!depertment) {
@@ -23,7 +39,6 @@ export default function DepertmentClient({ depertment }) {
 
   const depertmentData = depertments.find(dep => dep.id === id || String(dep._id) === String(depertment));
 
-  console.log('DepertmentClient depertment:', depertment, id, depertmentData);
 
   if (!depertmentData) {
     return (
@@ -50,18 +65,22 @@ export default function DepertmentClient({ depertment }) {
         <div className="w-full md:w-3/4 pt-1 md:pt-0">
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-4">{depertmentData.name}</h1>
           <p className="text-gray-600 text-sm md:text-base leading-relaxed">{depertmentData.description}</p>
-
-          {/* <div className="flex flex-col sm:flex-row gap-3 mt-6">
-            <button className="px-4 py-2 bg-gradient-to-r from-cyan-500 to-indigo-600 text-white rounded-lg hover:shadow-lg transition-all">Contact Department</button>
-            <button className="px-4 py-2 border border-gray-200 text-slate-900 rounded-lg hover:border-gray-300 transition-all">View Doctors</button>
-          </div> */}
         </div>
       </section>
 
-      {/* <section className="mt-8 md:mt-12">
-        <h3 className="text-xl md:text-2xl font-bold mb-4">About</h3>
-        <p className="text-gray-600 leading-relaxed">{depertmentData.long_description || depertmentData.description}</p>
-      </section> */}
+<section>
+      <h2 className="text-xl md:text-2xl font-semibold mt-10 mb-6">Our Specialists</h2>
+      {departmentDoctors.length === 0 ? (
+        <p className="text-gray-600">No doctors available in this department at the moment.</p>
+      ) : (
+        <section className="mt-8 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-6">
+          {departmentDoctors.map((doctor) => (
+            <Overview key={doctor.id} doctorData={doctor} />
+          ))}
+        </section>
+      )}  
+</section>
+      
     </main>
   )
 }

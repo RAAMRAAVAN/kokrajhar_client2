@@ -196,6 +196,8 @@ const ContactPage = () => {
                                     <Box display='flex' alignItems='baseline' sx={{ flexDirection: 'column' }}>
                                         <Typography color="#58595b">{HospitalDetails.phone2}</Typography>
                                     </Box>
+                                    <Typography color="#58595b" fontWeight='bold' fontSize={12}>(9:00 AM to 5:00 PM IST, Monday to Saturday)</Typography>
+
                                 </Box>
                             </Box> : <></>}
 

@@ -121,9 +121,46 @@ const Overview = ({doctorData}) => {
         <Grid item md={4} xs={12} display="flex" flexDirection="column" justifyContent="center" gap={1} padding={1}>
           <Typography fontWeight="bolder" fontSize={24}>{doctorDetails.name}</Typography>
           <Box display='flex' border='1px black sold' alignItems='center'><Typography fontWeight='bold' color="gray" marginRight={1}>Designation: </Typography> <Typography>{doctorDetails.designation}</Typography></Box>
-          <Box display='flex' border='1px black sold' alignItems='center'><Typography fontWeight='bold' color="gray" marginRight={1}>Specialization: </Typography> <Typography>{doctorDetails.specialization || ''}</Typography></Box>
+          {/* <Box display='flex' border='1px black sold' alignItems='center'><Typography fontWeight='bold' color="gray" marginRight={1}>Specialization: </Typography> <Typography>{doctorDetails.specialization || ''}</Typography></Box> */}
+          
+          <Box display="flex" alignItems="flex-start">
+            <Typography fontWeight="bold" color="gray" marginRight={1}>
+              Specialization:
+            </Typography>
+            <Typography>
+              {(doctorDetails.specialization || "")
+                .split(";")
+                .map(s => s.trim())
+                .join(", ")}
+            </Typography>
+          </Box>
+
           <Box display='flex' border='1px black sold' alignItems='center'><Typography fontWeight='bold' color="gray" marginRight={1}>Department: </Typography><Typography>{doctorDetails.depertment || ""}</Typography></Box>
-          <Box display='flex' border='1px black sold' alignItems='center'><Typography fontWeight='bold' color="gray" marginRight={1} marginY={1}>Qualifications: </Typography> <Typography>{doctorDetails.qualification || ''}</Typography></Box>
+          {/* <Box display='flex' border='1px black sold' alignItems='center'><Typography fontWeight='bold' color="gray" marginRight={1} marginY={1}>Qualifications: </Typography> <Typography>{doctorDetails.qualification || ''}</Typography></Box> */}
+          
+          <Box display="flex" alignItems="flex-start">
+  <Typography
+    fontWeight="bold"
+    color="gray"
+    marginRight={1}
+    sx={{ whiteSpace: "nowrap" }}
+  >
+    Qualifications:
+  </Typography>
+
+  <Typography
+    sx={{
+      wordBreak: "keep-all",
+      overflowWrap: "break-word",
+    }}
+  >
+    {(doctorDetails.qualification || "")
+      .split(";")
+      .map(q => q.trim())
+      .join(", ")}
+  </Typography>
+</Box>
+
         </Grid>
 
         {/* Calendar Section */}

@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Department-box.module.css";
 import { useRouter } from "next/navigation";
+import { selectDoctors } from "@/redux/features/doctorSlice";
+import { useSelector } from "react-redux";
 
 const DepartmentBox = (el) => {
   
   const router = useRouter();
   
+
 
   return (
     <div className={styles.cardHolder}>

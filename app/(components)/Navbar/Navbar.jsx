@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import ContactUsDropdown from './ContactUsDropdown';
 import { IoIosMail } from "react-icons/io";
 import { IoIosCall } from "react-icons/io";
-import { HomePageAccess, AboutUsAccess, FacilitiesAccess, HospitalsAccess, NewsAndEventsAccess, ContactUsAccess, AcademicsAccess, removeBackslashes } from "@/lib/fetchData";
+import { HomePageAccess, AboutUsAccess, FacilitiesAccess, HospitalsAccess, NewsAndEventsAccess, ContactUsAccess, AcademicsAccess, removeBackslashes, AppointmentAccess } from "@/lib/fetchData";
 import { useSelector } from "react-redux";
 import { Bold, NavBackground, NavElements } from '../Global';
 import MobileView from './MobileView';
@@ -29,6 +29,8 @@ const navItems = [
   { name: "News & Events", link: "/news", Active: NewsAndEventsAccess },
   { name: "Academics", link: "/academics", Active: AcademicsAccess },
   { name: "Contact Us", link: "/contact", Active: ContactUsAccess },
+  { name: 'Appointment', link: '/appointment', Active: AppointmentAccess },
+
 ];
 
 export default function Navbar({ setMobileOpen, mobileOpen }) {
