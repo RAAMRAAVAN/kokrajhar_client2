@@ -15,6 +15,7 @@ import SearchDoctors from './DoctorCard/SearchDoctors';
 import { selectDoctors } from '@/redux/features/doctorSlice';
 import { selectHospitalDetails } from '@/redux/features/hospitalDetailSlice';
 import { useSelector } from 'react-redux';
+import Image from 'next/image';
 
 const AccomplishmentsMain = lazy(() => import("./Accomplishments/AccomplichmentsMain"));
 const Facilities = lazy(() => import("./Facilities/FacilityData"));
@@ -22,6 +23,7 @@ const Facility2 = lazy(() => import("./Facilities/Facility2"));
 const Department = lazy(() => import("./Department/Department"));
 const OurHospitals = lazy(() => import("./Hospitals/OurHospitalsPage"));
 const OurHospitals2 = lazy(() => import("./Hospitals/OurHospitals"));
+const Acredetions = lazy(() => import("./Acredetions/Acredetions"));
 const ImageSliderMain = lazy(() => import("./HomeImageSlider/ImageSliderMain"));
 
 const navItems = [
@@ -35,6 +37,7 @@ const navItems = [
     { label: 'Featured Stories', to: 'Featured' },
     { label: 'Our Stories', to: 'Stories' },
     { label: 'ACCF Network', to: 'Network' },
+    { label: 'Certifications', to: 'Certifications' },
 ];
 
 const ScrollNav = () => {
@@ -273,19 +276,7 @@ const ScrollNav = () => {
                     </Box>
                 </Box>
 
-                {/* <Element name="Network">
-                    <Box ref={el => sectionRefs.current['Network'] = el} data-section="Network" mt={5} display="flex" justifyContent="center">
-                        <Box width="90%">
-                            <Typography variant="h5" fontWeight="bold" mb={3}>ACCF Network</Typography>
-
-                        </Box>
-                    </Box>
-                </Element>
-                <Box display="flex" justifyContent="center">
-                    <Box width="90%">
-                        <Suspense fallback={<Loader />}><OurHospitals /></Suspense>
-                    </Box>
-                </Box> */}
+                
 
                 <Element name="Network">
                     <Box ref={el => sectionRefs.current['Network'] = el} data-section="Network" mt={5} display="flex" justifyContent="center">
@@ -306,6 +297,24 @@ const ScrollNav = () => {
                         <Suspense fallback={<Loader />}><OurHospitals2 /></Suspense>
                     </Box>
                 </Box>
+
+                
+                {HospitalDetails.id == 7 || HospitalDetails.id == 2 || HospitalDetails.id == 4 ? 
+                <>
+                <Element name="Certifications">
+                    <Box ref={el => sectionRefs.current['Certifications'] = el} data-section="Certifications" mt={5} display="flex" justifyContent="center">
+                        <Box width="90%">
+                            <Typography variant="h5" fontWeight="bold" mb={3}>Certifications</Typography>
+                        </Box>
+                    </Box>
+                </Element>
+                        <Suspense fallback={<Loader />}><Acredetions /></Suspense>
+                </>
+                : <></>}
+
+
+
+
             </Box>
         </>
     );

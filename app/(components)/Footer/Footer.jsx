@@ -147,15 +147,14 @@ const Footer = () => {
                 }}
               >
                 <Phone sx={{ color: "gray", mr: 1 }} /> {hospitalData.phone2}
+                
               </Typography>
 
-              {hospitalData.phone2 === "18003454325" ? (
+              
                 <Typography fontSize={10} color="red">
                   (9:00 AM to 5:00 PM IST, Monday to Saturday)
                 </Typography>
-              ) : (
-                <></>
-              )}
+              
             </>
           ) : (
             <></>

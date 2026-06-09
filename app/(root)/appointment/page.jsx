@@ -33,6 +33,15 @@ export default function CallCentreDetails() {
       সোমবাৰৰ পৰা শুকুৰবাৰ (কাৰ্যদিন) পুৱা ৯:০০ বজাৰ পৰা সন্ধিয়া ৫:০০ বজালৈ,
       আৰু শনিবাৰ (কাৰ্যদিন) পুৱা ৯:০০ বজাৰ পৰা সন্ধিয়া ৫:০০ বজালৈ।)
     </p>
+
+    <p className="text-base leading-relaxed mt-3">
+      For Radiology (MRI, X-Ray, CT, Mammography) appointment contact:
+
+      7099003994/7099003996
+
+      Monday to Saturday (Working Days): 9:00 AM to 5:00 PM IST.
+    </p>
+
   </div>
 
   {/* Appointment Validity */}
