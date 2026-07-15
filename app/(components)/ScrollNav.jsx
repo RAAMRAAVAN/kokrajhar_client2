@@ -299,7 +299,7 @@ const ScrollNav = () => {
                 </Box>
 
                 
-                {HospitalDetails.id == 7 || HospitalDetails.id == 2 || HospitalDetails.id == 4 ? 
+                {HospitalDetails.id == 2 || HospitalDetails.id == 4 || HospitalDetails.id == 7 || HospitalDetails.id == 8 ? 
                 <>
                 <Element name="Certifications">
                     <Box ref={el => sectionRefs.current['Certifications'] = el} data-section="Certifications" mt={5} display="flex" justifyContent="center">

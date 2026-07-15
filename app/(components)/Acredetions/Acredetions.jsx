@@ -22,7 +22,8 @@ const Acredetions  = () => {
               priority
             /> 
             <h1> NABH Accreditation</h1>
-            <h2>Certificate No : PESHCO-2025-11016</h2>
+            <h2>Certificate No : PESHCO-2026-12346</h2>
+            <h2>Validity: From 09/06/2026 to 08/06/2028</h2>
           </Box>
 
            
