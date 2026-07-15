@@ -23,7 +23,7 @@ const Acredetions  = () => {
             /> 
             <h1> NABH Accreditation</h1>
             <h2>Certificate No : PESHCO-2025-11016</h2>
-            <h2>Validity: From -- to --</h2>
+            <h2>Validity: From 24/06/2025 to 23/06/2027</h2>
           </Box>
 
            
